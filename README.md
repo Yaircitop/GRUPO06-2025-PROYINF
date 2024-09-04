@@ -1,8 +1,8 @@
 # GRUPO11
 
-Este es el repositorio del *Grupo 2*, cuyos integrantes son:
+Este es el repositorio del *Grupo 11*, cuyos integrantes son:
 
-* Bruno Decinti
+* Bruno Decinti - 201911524-3
 * Nicolas Muñoz
 * Yair Cárdenas - 202273579-1
 * **Tutor**: Josefa Flores
