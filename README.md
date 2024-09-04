@@ -8,7 +8,7 @@ Este es el repositorio del *Grupo 11*, cuyos integrantes son:
 * **Tutor**: Josefa Flores
 
 ## Wiki
-Puede acceder a la Wiki mediante el siguiente [enlace](https://github.com/Mati2F/GRUPO02-2024-PROYINF/wiki)
+Puede acceder a la Wiki mediante el siguiente [enlace](wiki)
 
 ## Videos
 * [Video Presentación Cliente](https://www.youtube.com/watch?v=abJau21SDIk&ab_channel=RicardoSalasLetelier)
