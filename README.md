@@ -3,7 +3,7 @@
 Este es el repositorio del *Grupo 11*, cuyos integrantes son:
 
 * Bruno Decinti - 201911524-3
-* Nicolas Muñoz
+* Nicolas Muñoz - 202104641-0
 * Yair Cárdenas - 202273579-1
 * **Tutor**: Josefa Flores
 
