@@ -16,8 +16,8 @@ Version: 1.2
   /* --secondary-color: #E2EAF1; */
   --dark-color: #121B25;
   --grey-color: #83898F;
-  --body-text-color: #FFFFFF;
-  --light-text-color: #D6D6D6;
+  --body-text-color: #171717;
+  --light-text-color: #181818;
   --link-color: #092035;
 }
 
@@ -29,7 +29,7 @@ body {
   font-size: 19px;
   line-height: 1.6em;
   color: var(--body-text-color);
-  background-color: var(--dark-color);
+  background-color: #f4f4f4;
 
 }
 
@@ -143,7 +143,7 @@ i:hover {
   --bs-btn-hover-bg: var(--accent-color);
   --bs-btn-hover-border-color: var(--accent-color);
   --bs-btn-focus-shadow-rgb: 13, 110, 253;
-  --bs-btn-active-color: #fff;
+  --bs-btn-active-color: var(--body-text-color);
   --bs-btn-active-bg: var(--accent-color);
   --bs-btn-active-border-color: var(--accent-color);
   --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
@@ -158,13 +158,13 @@ i:hover {
 .text-white .nav-link.active,
 .text-white .nav-link:focus,
 .text-white .nav-link:hover {
-  color: var(----body-text-color);
+  color: var(--body-text-color);
 }
 
 .nav-link.active,
 .nav-link:focus,
 .nav-link:hover {
-  color: var(----body-text-color);
+  color: var(--body-text-color);
 }
 
 .nav-link {
@@ -209,7 +209,7 @@ a.password:hover {
 }
 
 .bg-dark {
-  background-color: var(--dark-color) !important;
+  background-color: #fff !important;
 }
 
 .site-header {
@@ -312,15 +312,15 @@ button.btn.btn-primary.btn-lg.billboard-search {
 }
 
 section#boletines {
-  background-image: url(images/residence.png);
+  background-image: url(images/residence.jpg);
   position: relative;
 }
 
 .swiper-button-next.residence-arrow,
 .swiper-button-prev.residence-arrow {
-  background: transparent;
+  background: var(--body-text-color);
   color: #ffffff;
-  border: 1px solid #FFFFFF;
+  border: 1px solid #343434;
   padding: initial;
   width: 50px;
   height: 50px;
@@ -388,7 +388,7 @@ p.testimonial-p {
 
 /*---- footer section start ----  */
 section#footer {
-  background: #1A242F;
+  background: #dcdcdc;
 }
 
 .link-primary {

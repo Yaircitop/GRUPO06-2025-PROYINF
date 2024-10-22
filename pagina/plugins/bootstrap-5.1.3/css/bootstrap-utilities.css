@@ -1337,10 +1337,6 @@
   color: rgba(var(--bs-black-rgb), var(--bs-text-opacity)) !important;
 }
 
-.text-white {
-  --bs-text-opacity: 1;
-  color: rgba(var(--bs-white-rgb), var(--bs-text-opacity)) !important;
-}
 
 .text-body {
   --bs-text-opacity: 1;
