@@ -372,6 +372,7 @@ button,
 [type=reset],
 [type=submit] {
   -webkit-appearance: button;
+  appearance: none;
 }
 button:not(:disabled),
 [type=button]:not(:disabled),
@@ -430,6 +431,7 @@ legend + * {
 [type=search] {
   outline-offset: -2px;
   -webkit-appearance: textfield;
+  appearance: none;
 }
 
 /* rtl:raw:
@@ -4497,6 +4499,7 @@ textarea.form-control-lg {
   border: 1px solid rgba(0, 0, 0, 0.125);
   border-radius: 0.25rem;
 }
+
 .card > hr {
   margin-right: 0;
   margin-left: 0;

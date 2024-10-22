@@ -52,7 +52,7 @@ h6,
 
 h1,
 .h1 {
-  font-size: 68px;
+  font-size: 98px;
 }
 
 h2,
@@ -64,7 +64,7 @@ h2,
 
   h1,
   .h1 {
-    font-size: 58px;
+    font-size: 70px;
   }
 
   h2,
@@ -91,6 +91,7 @@ a {
   color: var(--light-text-color);
   text-decoration: none;
   transition: all 0.3s ease-out;
+  
 }
 
 a:hover {
@@ -307,10 +308,10 @@ button.btn.btn-primary.btn-lg.billboard-search {
 }
 
 .card-title {
-  font-size: 26px;
+  font-size: 20px;
 }
 
-section#residence {
+section#boletines {
   background-image: url(images/residence.png);
   position: relative;
 }
@@ -318,7 +319,7 @@ section#residence {
 .swiper-button-next.residence-arrow,
 .swiper-button-prev.residence-arrow {
   background: transparent;
-  color: #FFFFFF;
+  color: #ffffff;
   border: 1px solid #FFFFFF;
   padding: initial;
   width: 50px;
@@ -623,6 +624,7 @@ Properties page style start
   text-align: center;
   border: 1px solid #999;
   -moz-appearance: textfield;
+  appearance: none;
 }
 
 input[type="number"]::-webkit-outer-spin-button,
@@ -667,6 +669,7 @@ input[type="number"]::-webkit-inner-spin-button {
   pointer-events: none;
   -webkit-appearance: none;
   -moz-appearance: none;
+  appearance: none;
 }
 
 input[type="range"]::-webkit-slider-thumb {
