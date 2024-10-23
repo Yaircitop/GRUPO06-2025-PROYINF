@@ -42,12 +42,11 @@
         <a class="navbar-brand" href="./index.html"><img src="images/logo.png" alt="image"></a>
 
 
-        <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas"
-          data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation"><ion-icon
-            name="menu-outline" style="font-size: 30px;"></ion-icon></button>
+        <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
+          aria-controls="offcanvasNavbar" aria-label="Toggle navigation"><ion-icon name="menu-outline"
+            style="font-size: 30px;"></ion-icon></button>
 
-        <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar"
-          aria-labelledby="offcanvasNavbarLabel">
+        <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
           <div class="offcanvas-header">
             <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Menú</h5>
             <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"
@@ -68,7 +67,8 @@
                 <a class="nav-link me-md-4" href="#help">Contacto</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link mx-md-4" href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">Iniciar sesión</a>
+                <a class="nav-link mx-md-4" href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">Iniciar
+                  sesión</a>
               </li>
 
               <!-- Modal -->
@@ -81,6 +81,7 @@
                     </div>
                     <div class="modal-body">
                       <div class="tabs-listing mt-4">
+                        <!-- Pestañas -->
                         <nav>
                           <div class="nav nav-tabs d-flex justify-content-center border-0" id="nav-tab" role="tablist">
                             <button class="btn btn-outline-primary text-uppercase me-3 active" id="nav-sign-in-tab"
@@ -91,58 +92,56 @@
                               aria-controls="nav-register" aria-selected="false">Registrarse</button>
                           </div>
                         </nav>
+
+                        <!-- Contenido de las pestañas -->
                         <div class="tab-content" id="nav-tabContent">
+                          <!-- Pestaña Iniciar Sesión -->
                           <div class="tab-pane fade active show" id="nav-sign-in" role="tabpanel"
                             aria-labelledby="nav-sign-in-tab">
                             <form id="form1" class="form-group flex-wrap p-3 ">
-                              <div class="form-input col-lg-12 my-4">
-                                <label for="exampleInputEmail1"
-                                  class="form-label fs-6 text-uppercase fw-bold text-black">Email
-                                  Address</label>
-                                <input type="text" id="exampleInputEmail1" name="email" placeholder="Email"
-                                  class="form-control ps-3">
+                              <div class="form-floating col-lg-12 my-4">
+                                <input type="email" id="email-input" name="email"
+                                  placeholder="Dirección de correo electrónico" required class="form-control">
+                                <label for="email-input">Dirección de correo electrónico</label>
                               </div>
-                              <div class="form-input col-lg-12 my-4">
-                                <label for="inputPassword1"
-                                  class="form-label  fs-6 text-uppercase fw-bold text-black">Password</label>
-                                <input type="password" id="inputPassword1" placeholder="Password"
-                                  class="form-control ps-3" aria-describedby="passwordHelpBlock">
-                                <div id="passwordHelpBlock" class="form-text text-center">
-                                  <a href="#" class=" password">Forgot Password ?</a>
-                                </div>
 
+                              <div class="form-floating col-lg-12 my-4">
+                                <input type="password" class="form-control" id="password-input" placeholder="Contraseña"
+                                  required>
+                                <label for="password-input">Contraseña</label>
                               </div>
-                              <label class="py-3">
-                                <input type="checkbox" required="" class="d-inline">
-                                <span class="label-body text-black">Remember Me</span>
-                              </label>
+
                               <div class="d-grid my-3">
-                                <button class="btn btn-primary btn-lg btn-dark text-uppercase btn-rounded-none fs-6">Log
-                                  In</button>
+                                <button
+                                  class="btn btn-primary btn-lg btn-dark text-uppercase btn-rounded-none fs-6">Continuar</button>
                               </div>
+
                             </form>
                           </div>
+
+                          <!-- Pestaña Crear Cuenta Nueva -->
                           <div class="tab-pane fade" id="nav-register" role="tabpanel"
                             aria-labelledby="nav-register-tab">
-                            <form id="form2" class="form-group flex-wrap p-3 ">
-                              <div class="form-input col-lg-12 my-4">
-                                <label for="exampleInputEmail2"
-                                  class="form-label fs-6 text-uppercase fw-bold text-black">Email
-                                  Address</label>
-                                <input type="text" id="exampleInputEmail2" name="email" placeholder="Email"
-                                  class="form-control ps-3">
+                            <form id="form2" class="form-group flex-wrap p-3">
+                              <div class="form-floating col-lg-12 my-4">
+                                <input type="email" id="exampleInputEmail2" name="email" placeholder="Correo Electrónico"
+                                  class="form-control ps-3" required>
+                                <label for="exampleInputEmail2">RUN</label>
                               </div>
-                              <div class="form-input col-lg-12 my-4">
-                                <label for="inputPassword2"
-                                  class="form-label  fs-6 text-uppercase fw-bold text-black">Password</label>
-                                <input type="password" id="inputPassword2" placeholder="Password"
-                                  class="form-control ps-3" aria-describedby="passwordHelpBlock">
+                              <div class="form-floating col-lg-12 my-4">
+                                <input type="email" id="exampleInputEmail2" name="email" placeholder="Correo Electrónico"
+                                  class="form-control ps-3" required>
+                                <label for="exampleInputEmail2">Dirección de correo electrónico</label>
+                              </div>
+                              <div class="form-floating col-lg-12 my-4">
+                                <input type="password" id="inputPassword2" placeholder="Contraseña"
+                                  class="form-control ps-3" aria-describedby="passwordHelpBlock" required>
+                                <label for="inputPassword2">Contraseña</label>
                               </div>
                               <label class="py-3">
                                 <input type="checkbox" required="" class="d-inline">
-                                <span class="label-body text-black">I agree to the <a href="#"
-                                    class="text-black password border-bottom">Privacy Policy</a>
-                                </span>
+                                <span class="label-body text-black">Acepto la <a href="#"
+                                    class="text-black password border-bottom">Política de Privacidad</a></span>
                               </label>
                               <div class="d-grid my-3">
                                 <button
@@ -271,7 +270,7 @@
 
         <div class="col-lg-6">
           <h1 class=" text-capitalize  lh-1 my-3">FIA</h1>
-          <h2 class="text-capitalize  lh-1 my-3">el apoyo que necesitas para innovar</h2> 
+          <h2 class="text-capitalize  lh-1 my-3">el apoyo que necesitas para innovar</h2>
           <p class="lead">Una mirada a la innovación agro en los distintos territorios del país</p>
         </div>
       </div>
@@ -291,7 +290,8 @@
 
           <div class="swiper-slide">
             <div class="card">
-              <a href="https://opia.fia.cl/601/w3-article-126720.html"><img src="images/item15.png" class="card-img-top" alt="image"></a>
+              <a href="https://opia.fia.cl/601/w3-article-126720.html"><img src="images/item15.png" class="card-img-top"
+                  alt="image"></a>
               <div class="card-body p-0">
                 <a href="https://opia.fia.cl/601/w3-article-126720.html">
                   <h5 class="card-title pt-4">Boletín de Vigilancia e Inteligencia en Innovación, N°10</h5>
@@ -299,7 +299,7 @@
                 <p class="card-text">Adaptación y Mitigación al Cambio Climático</p>
 
                 <div class="card-text">
-                  <ul class="d-flex">     
+                  <ul class="d-flex">
                     <li class="residence-list"> <img src="images/clock.png" alt="image">26-sep-2024</li>
                   </ul>
                 </div>
@@ -309,7 +309,8 @@
           </div>
           <div class="swiper-slide">
             <div class="card">
-              <a href="https://opia.fia.cl/601/articles-126033_archivo_01.pdf"><img src="images/item16.png" class="card-img-top" alt="image"></a>
+              <a href="https://opia.fia.cl/601/articles-126033_archivo_01.pdf"><img src="images/item16.png"
+                  class="card-img-top" alt="image"></a>
               <div class="card-body p-0">
                 <a href="https://opia.fia.cl/601/articles-126033_archivo_01.pdf">
                   <h5 class="card-title pt-4">Boletín de Vigilancia e Inteligencia en Innovación, N°09</h5>
@@ -317,7 +318,7 @@
                 <p class="card-text">Adaptación y Mitigación al Cambio Climático</p>
 
                 <div class="card-text">
-                  <ul class="d-flex">     
+                  <ul class="d-flex">
                     <li class="residence-list"> <img src="images/clock.png" alt="image">28-jun-2024</li>
                   </ul>
                 </div>
@@ -327,7 +328,8 @@
           </div>
           <div class="swiper-slide">
             <div class="card">
-              <a href="https://opia.fia.cl/601/articles-126721_archivo_01.pdf"><img src="images/item17.png" class="card-img-top" alt="image"></a>
+              <a href="https://opia.fia.cl/601/articles-126721_archivo_01.pdf"><img src="images/item17.png"
+                  class="card-img-top" alt="image"></a>
               <div class="card-body p-0">
                 <a href="https://opia.fia.cl/601/articles-126721_archivo_01.pdf">
                   <h5 class="card-title pt-4">Boletín de Vigilancia e Inteligencia en Innovación, N°10</h5>
@@ -335,7 +337,7 @@
                 <p class="card-text">Gestión Sostenible de Recursos Hídricos</p>
 
                 <div class="card-text">
-                  <ul class="d-flex">     
+                  <ul class="d-flex">
                     <li class="residence-list"> <img src="images/clock.png" alt="image">26-sep-2024</li>
                   </ul>
                 </div>
@@ -345,7 +347,8 @@
           </div>
           <div class="swiper-slide">
             <div class="card">
-              <a href="https://opia.fia.cl/601/articles-126034_archivo_01.pdf"><img src="images/item18.png" class="card-img-top" alt="image"></a>
+              <a href="https://opia.fia.cl/601/articles-126034_archivo_01.pdf"><img src="images/item18.png"
+                  class="card-img-top" alt="image"></a>
               <div class="card-body p-0">
                 <a href="https://opia.fia.cl/601/articles-126034_archivo_01.pdf">
                   <h5 class="card-title pt-4">Boletín de Vigilancia e Inteligencia en Innovación, N°09</h5>
@@ -353,7 +356,7 @@
                 <p class="card-text">Gestión Sostenible de Recursos Hídricos</p>
 
                 <div class="card-text">
-                  <ul class="d-flex">     
+                  <ul class="d-flex">
                     <li class="residence-list"> <img src="images/clock.png" alt="image">28-jun-2024</li>
                   </ul>
                 </div>
@@ -363,7 +366,8 @@
           </div>
           <div class="swiper-slide">
             <div class="card">
-              <a href="https://opia.fia.cl/601/articles-126722_archivo_01.pdf"><img src="images/item19.png" class="card-img-top" alt="image"></a>
+              <a href="https://opia.fia.cl/601/articles-126722_archivo_01.pdf"><img src="images/item19.png"
+                  class="card-img-top" alt="image"></a>
               <div class="card-body p-0">
                 <a href="https://opia.fia.cl/601/articles-126722_archivo_01.pdf">
                   <h5 class="card-title pt-4">Boletín de Vigilancia e Inteligencia en Innovación, N°10</h5>
@@ -371,7 +375,7 @@
                 <p class="card-text">Sistemas Alimentarios Sostenibles</p>
 
                 <div class="card-text">
-                  <ul class="d-flex">     
+                  <ul class="d-flex">
                     <li class="residence-list"> <img src="images/clock.png" alt="image">26-sep-2024</li>
                   </ul>
                 </div>
@@ -389,7 +393,7 @@
                 <p class="card-text">Sistemas Alimentarios Sostenibles</p>
 
                 <div class="card-text">
-                  <ul class="d-flex">     
+                  <ul class="d-flex">
                     <li class="residence-list"> <img src="images/clock.png" alt="image">28-jun-2024</li>
                   </ul>
                 </div>
@@ -427,14 +431,16 @@
           <img src="images/price.png" class="bd-placeholder-img rounded-circle" alt="Bootstrap Themes" width="140"
             height="140" loading="lazy">
           <h4 class="fw-normal mt-5">Impulso para Innovar</h4>
-          <p>Generar soluciones eficientes a problemas y/o oportunidades identificadas en el sector silvoagropecuario y la cadena agroalimentaria nacional</p>
+          <p>Generar soluciones eficientes a problemas y/o oportunidades identificadas en el sector silvoagropecuario y
+            la cadena agroalimentaria nacional</p>
         </div>
 
         <div class="text-center col-lg-4">
           <img src="images/time.png" class="bd-placeholder-img rounded-circle" alt="Bootstrap Themes" width="140"
             height="140" loading="lazy">
           <h4 class="fw-normal mt-5 ">Desarrollo de Capacidades</h4>
-          <p>Facilitar oportunidades de aprendizaje orientadas a adquirir conocimientos, desarrollar habilidades y/o integrar las competencias necesarias para actores del sector</p>
+          <p>Facilitar oportunidades de aprendizaje orientadas a adquirir conocimientos, desarrollar habilidades y/o
+            integrar las competencias necesarias para actores del sector</p>
         </div>
       </div>
     </div>
@@ -457,7 +463,9 @@
         <div class="col-md-6">
           <div class="text-content ps-md-5 mt-4 mt-md-0">
             <h2 class="text-capitalize">Nuestra Misión</h2>
-            <p>Promover procesos de innovación a través del desarrollo capacidades, articulación, información estratégica y la generación de innovaciones que contribuyan al desarrollo sostenible del sector silvoagropecuario y la cadena agroalimentaria en todas las regiones del país.</p>
+            <p>Promover procesos de innovación a través del desarrollo capacidades, articulación, información
+              estratégica y la generación de innovaciones que contribuyan al desarrollo sostenible del sector
+              silvoagropecuario y la cadena agroalimentaria en todas las regiones del país.</p>
             <a href="https://www.fia.cl/fia-en-el-territorio-nacional/" class="btn btn-primary btn-lg">Contáctanos</a>
           </div>
         </div>
@@ -476,8 +484,12 @@
         </div>
         <div class="col-md-7 order-md-2">
           <div class="text-content ps-md-5 mt-4 mt-md-0">
-            <p class="py-lg-2">FIA bajo las directrices y prioridades emanadas desde el Ministerio de Agricultura, ha puesto en marcha cuatro Programas Estratégicos de Innovación, para contribuir a fomentar en la AFC, mujeres y jóvenes rurales, la innovación y que logren así, convertirse en actores sociales relevantes tanto en el desarrollo de su territorio como en el ecosistema local.</p>
-            <a href="https://www.fia.cl/programas-estrategicos/" class="btn btn-primary btn-lg px-4 me-md-2"> Revisa nuestros programas</a>
+            <p class="py-lg-2">FIA bajo las directrices y prioridades emanadas desde el Ministerio de Agricultura, ha
+              puesto en marcha cuatro Programas Estratégicos de Innovación, para contribuir a fomentar en la AFC,
+              mujeres y jóvenes rurales, la innovación y que logren así, convertirse en actores sociales relevantes
+              tanto en el desarrollo de su territorio como en el ecosistema local.</p>
+            <a href="https://www.fia.cl/programas-estrategicos/" class="btn btn-primary btn-lg px-4 me-md-2"> Revisa
+              nuestros programas</a>
           </div>
         </div>
       </div>
@@ -500,18 +512,23 @@
         <div class="col-md-2 ">
           <h5>Sitio de Interes</h5>
           <ul class="nav flex-column">
-            <li class="nav-item mb-2"><a href="https://www.minagri.gob.cl" class="nav-link p-0 ">Ministerio de agricultura</a></li>
+            <li class="nav-item mb-2"><a href="https://www.minagri.gob.cl" class="nav-link p-0 ">Ministerio de
+                agricultura</a></li>
             <li class="nav-item mb-2"><a href="https://anid.cl" class="nav-link p-0 ">ANID</a></li>
-            <li class="nav-item mb-2"><a href="https://www.corfo.cl/sites/cpp/homecorfo" class="nav-link p-0 ">Corfo</a></li>
+            <li class="nav-item mb-2"><a href="https://www.corfo.cl/sites/cpp/homecorfo" class="nav-link p-0 ">Corfo</a>
+            </li>
             <li class="nav-item mb-2"><a href="https://cnid.cl" class="nav-link p-0 ">CNID</a></li>
           </ul>
         </div>
 
         <div class="col-md-2 ">
           <ul class="nav flex-column">
-            <li class="nav-item mb-2"><a href="https://www.fia.cl/pilares-de-accion/licitaciones-de-proveedores/" class="nav-link p-0 ">Licitaciones de proveedores</a></li>
-            <li class="nav-item mb-2"><a href="https://www.fia.cl/transparencia/" class="nav-link p-0 ">Gobierno Transparente</a></li>
-            <li class="nav-item mb-2"><a href="https://www.fia.cl/solicitud-informacion-ley-de-transparencia/" class="nav-link p-0 ">Solicitudes de Transparencia </a></li>
+            <li class="nav-item mb-2"><a href="https://www.fia.cl/pilares-de-accion/licitaciones-de-proveedores/"
+                class="nav-link p-0 ">Licitaciones de proveedores</a></li>
+            <li class="nav-item mb-2"><a href="https://www.fia.cl/transparencia/" class="nav-link p-0 ">Gobierno
+                Transparente</a></li>
+            <li class="nav-item mb-2"><a href="https://www.fia.cl/solicitud-informacion-ley-de-transparencia/"
+                class="nav-link p-0 ">Solicitudes de Transparencia </a></li>
           </ul>
         </div>
 
@@ -519,7 +536,9 @@
         <div class="col-md-2 ">
           <h5>Contacto</h5>
           <ul class="nav flex-column">
-            <li class="nav-item mb-2"><a href="https://www.google.cl/maps/place/Loreley+1582,+La+Reina,+Regi%C3%B3n+Metropolitana/data=!4m2!3m1!1s0x9662ce53bfb0bf93:0x3d18e3be5923e3e0?sa=X&ved=0ahUKEwiUqs7lnZ7YAhULfZAKHZuWB_YQ8gEIKzAB" class="nav-link p-0 ">Loreley #1582, La Reina, Santiago </a></li>
+            <li class="nav-item mb-2"><a
+                href="https://www.google.cl/maps/place/Loreley+1582,+La+Reina,+Regi%C3%B3n+Metropolitana/data=!4m2!3m1!1s0x9662ce53bfb0bf93:0x3d18e3be5923e3e0?sa=X&ved=0ahUKEwiUqs7lnZ7YAhULfZAKHZuWB_YQ8gEIKzAB"
+                class="nav-link p-0 ">Loreley #1582, La Reina, Santiago </a></li>
             <li class="nav-item mb-2"><a href="tel:56224313000" class="nav-link p-0 ">Teléfono: +562 24313000</a></li>
             <li class="nav-item mb-2"><a href="mailto:contacto@fia.cl" class="nav-link p-0 ">contacto@fia.cl</a></li>
           </ul>
@@ -529,7 +548,7 @@
 
 
 
-    
+
   </section>
 
 
