@@ -66,13 +66,15 @@
               <li class="nav-item">
                 <a class="nav-link me-md-4" href="#help">Contacto</a>
               </li>
-              
+
               <li class="nav-item">
-                <a class="nav-link mx-md-4" href="#" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="showLogin()">Iniciar sesión</a>
+                <a class="nav-link mx-md-4" href="#" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                  onclick="showLogin()">Iniciar sesión</a>
               </li>
 
               <li class="nav-item">
-                <a class="btn-medium btn btn-primary" href="#" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="showRegister()">Registrarse</a>
+                <a class="btn-medium btn btn-primary" href="#" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                  onclick="showRegister()">Registrarse</a>
               </li>
 
               <!-- Modal Único -->
@@ -100,15 +102,16 @@
                         <!-- Contenido de las pestañas -->
                         <div class="tab-content" id="nav-tabContent">
                           <!-- Pestaña Iniciar Sesión -->
-                          <div class="tab-pane fade" id="nav-sign-in" role="tabpanel"
-                            aria-labelledby="nav-sign-in-tab">
+                          <div class="tab-pane fade" id="nav-sign-in" role="tabpanel" aria-labelledby="nav-sign-in-tab">
                             <form id="form1" class="form-group flex-wrap p-3">
                               <div class="form-floating col-lg-12 my-4">
-                                <input type="email" id="email-input" name="email" placeholder="Correo" required class="form-control">
+                                <input type="email" id="email-input" name="email" placeholder="Correo" required
+                                  class="form-control">
                                 <label for="email-input">Correo Electrónico</label>
                               </div>
                               <div class="form-floating col-lg-12 my-4">
-                                <input type="password" class="form-control" id="password-input" placeholder="Contraseña" required>
+                                <input type="password" class="form-control" id="password-input" placeholder="Contraseña"
+                                  required>
                                 <label for="password-input">Contraseña</label>
                               </div>
                               <div class="d-grid my-3">
@@ -122,15 +125,17 @@
                             aria-labelledby="nav-register-tab">
                             <form id="form2" class="form-group flex-wrap p-3">
                               <div class="form-floating col-lg-12 my-4">
-                                <input type="text" id="run-input" name="run" placeholder="RUN" class="form-control" required>
+                                <input type="text" id="run" name="run" placeholder="RUN" class="form-control" required>
                                 <label for="run-input">RUN</label>
                               </div>
                               <div class="form-floating col-lg-12 my-4">
-                                <input type="email" id="register-email" name="email" placeholder="Correo Electrónico" class="form-control" required>
+                                <input type="email" id="register-email" name="email" placeholder="Correo Electrónico"
+                                  class="form-control" required>
                                 <label for="register-email">Correo Electrónico</label>
                               </div>
                               <div class="form-floating col-lg-12 my-4">
-                                <input type="password" id="register-password" placeholder="Contraseña" class="form-control" required>
+                                <input type="password" id="register-password" placeholder="Contraseña"
+                                  class="form-control" required>
                                 <label for="register-password">Contraseña</label>
                               </div>
                               <label class="py-3">
@@ -154,16 +159,53 @@
                 function showLogin() {
                   document.getElementById('nav-sign-in-tab').click(); // Activa la pestaña de Iniciar Sesión
                 }
-              
+
                 // Mostrar la pestaña de registro
                 function showRegister() {
                   document.getElementById('nav-register-tab').click(); // Activa la pestaña de Registrarse
                 }
               </script>
 
+              <script>
+                document.getElementById("run").addEventListener("input", function (e) {
+                  // Elimina los caracteres no numéricos, excepto por la letra 'k'
+                  let input = this.value.replace(/[^0-9kK]/g, "").toUpperCase();
 
-              
-              
+                  // Evita que la letra 'k' esté en cualquier posición que no sea la última
+                  if (input.indexOf('K') !== -1 && input.indexOf('K') !== input.length - 1) {
+                    input = input.replace(/K/g, "");
+                  }
+
+                  // Verifica que el input tenga al menos 3 caracteres antes del guion
+                  if (input.length >= 3) {
+                    // Formatea el RUN agregando puntos y guion
+                    input = input.substring(0, input.length - 1) + "-" + input.substr(input.length - 1);
+                    input = input.replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1.");
+                  }
+
+                  // Asigna el valor formateado de vuelta al input
+                  this.value = input;
+                });
+
+                // Agrega un evento para validar el RUN antes de enviar el formulario
+                document.querySelector("form").addEventListener("submit", function (e) {
+                  let input = document.getElementById("run").value.replace(/\D/g, "");
+                  let run = document.getElementById("run").value;
+
+                  // Verifica que el RUN sea válido: al menos 3 dígitos y el dígito verificador sea válido (número o 'K')
+                  if (input.length < 3 || !/^\d{1,8}-[\dKk]$/.test(run)) {
+                    alert("Ingrese un RUN válido con al menos 3 dígitos antes del guion y un dígito verificador correcto.");
+                    e.preventDefault(); // Evita enviar el formulario
+                  }
+                });
+              </script>
+
+
+
+
+
+
+
             </ul>
 
           </div>
