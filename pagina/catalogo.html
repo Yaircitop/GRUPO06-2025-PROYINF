@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catálogo de boletines</title>
+</head>
+<body>
+    <h1>Catálogo de boletines</h1>
+    <form method="get">
+        <form method="get">
+            <select name="categoria" onchange="this.form.submit()">
+                <option value="" {% if not categoria_seleccionada %}selected{% endif %}>Todas las categorías</option>
+                {% for categoria in categorias %}
+                <option value="{{categoria}}" {% if categoria == categoria_seleccionada %}selected{% endif %}>{{categoria}}</option>
+                {% endfor %}
+            </select>
+        </form>        
+    <ul>
+        {% for pdf in pdfs %}
+        <li>
+            <a href="{{ pdf.file.url }}" target="_blank">{{ pdf.title }}</a>
+            <a href="{{ pdf.file.url }}" download>Descargar</a>
+            <p>Categoria: {{ pdf.categoria }}</p>
+        </li>
+        {% endfor %}
+    </ul>
+    {% if user.is_authenticated and user.is_staff %}
+        <a href="{% url 'subir_boletin' %}">Subir boletin</a>
+    {%endif%}
+
+</body>
+</html>

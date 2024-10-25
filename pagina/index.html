@@ -2,11 +2,12 @@
 <html lang="eS">
 
 <head>
+  {% load static %}
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title> FUNDACIÓN PARA LA INNOVACIÓN AGRARIA</title>
 
-  <link rel="stylesheet" type="text/css" href="css/vendor.css">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/vendor.css' %}">
 
   <!-- Link Swiper's CSS -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
@@ -17,7 +18,9 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
 
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+
+  <img src="{% static 'images/logo.png' %}" alt="logo">
 
   <!-- Google Fonts ================================================== -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -26,7 +29,7 @@
     rel="stylesheet">
 
   <!-- script ================================================== -->
-  <script src="js/modernizr.js"></script>
+  <script src="{% static 'js/modernizr.js' %}"></script>
   <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
   <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 </head>
@@ -39,7 +42,7 @@
 
       <div class="container ">
 
-        <a class="navbar-brand" href="./index.html"><img src="images/logo.png" alt="image"></a>
+        <a class="navbar-brand" href="{% url 'home' %}"><img src="{% static 'images/logo.png' %}" alt="image"></a>
 
 
         <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
@@ -67,12 +70,22 @@
                 <a class="nav-link me-md-4" href="#help">Contacto</a>
               </li>
 
+
+              {% if user.is_authenticated %}
               <li class="nav-item">
-                <a class="nav-link mx-md-4" href="#" data-bs-toggle="modal" data-bs-target="#exampleModal"
-                  onclick="showLogin()">Iniciar sesión</a>
+                <span class="nav-link me-md-4">Hola, {{ user.username }}!</span>
+                
+                <a class="btn btn-danger" href="{% url 'logout' %}">Cerrar sesión</a>
+              </li>
+              {% else %}
+              <li class="nav-item">
+                <a class="nav-link mx-md-4" href="#" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="showLogin()>Iniciar
+                  sesión</a>
               </li>
 
+              </li>
               <li class="nav-item">
+
                 <a class="btn-medium btn btn-primary" href="#" data-bs-toggle="modal" data-bs-target="#exampleModal"
                   onclick="showRegister()">Registrarse</a>
               </li>
@@ -101,9 +114,11 @@
 
                         <!-- Contenido de las pestañas -->
                         <div class="tab-content" id="nav-tabContent">
+                                                                    
                           <!-- Pestaña Iniciar Sesión -->
-                          <div class="tab-pane fade" id="nav-sign-in" role="tabpanel" aria-labelledby="nav-sign-in-tab">
-                            <form id="form1" class="form-group flex-wrap p-3">
+                          <div class="tab-pane fade active show" id="nav-sign-in" role="tabpanel" aria-labelledby="nav-sign-in-tab">
+                            <form id="form1" method="POST" action="{% url 'login' %}" class="form-group flex-wrap p-3">
+                              {% csrf_token %}                                                                                        
                               <div class="form-floating col-lg-12 my-4">
                                 <input type="email" id="email-input" name="email" placeholder="Correo" required
                                   class="form-control">
@@ -115,15 +130,25 @@
                                 <label for="password-input">Contraseña</label>
                               </div>
                               <div class="d-grid my-3">
-                                <button class="btn btn-primary btn-lg btn-dark text-uppercase">Iniciar Sesión</button>
+                                <button class="btn btn-primary btn-lg btn-dark text-uppercase">Continuar</button>
                               </div>
                             </form>
+
+
                           </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+
 
                           <!-- Pestaña Registrarse -->
                           <div class="tab-pane fade" id="nav-register" role="tabpanel"
                             aria-labelledby="nav-register-tab">
-                            <form id="form2" class="form-group flex-wrap p-3">
+                            <form id="form2" method="POST" action="{% url 'signup' %}" class="form-group flex-wrap p-3">
+                              {% csrf_token %}
                               <div class="form-floating col-lg-12 my-4">
                                 <input type="text" id="run" name="run" placeholder="RUN" class="form-control" required>
                                 <label for="run-input">RUN</label>
@@ -143,15 +168,11 @@
                                 <span class="label-body">Acepto la <a href="#">Política de Privacidad</a></span>
                               </label>
                               <div class="d-grid my-3">
-                                <button class="btn btn-primary btn-lg btn-dark text-uppercase">Registrarse</button>
+                                <button class="btn btn-primary btn-lg btn-dark text-uppercase">Continuar</button>
                               </div>
                             </form>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+
+               
               </div>
 
               <script>
@@ -206,12 +227,12 @@
 
 
 
-            </ul>
+              <!-- revisar -->
+              {%endif%} 
 
+            </ul>
           </div>
         </div>
-
-
       </div>
     </nav>
   </header>
@@ -222,8 +243,8 @@
       <div class="row flex-lg-row-reverse align-items-center ">
 
         <div class="col-lg-6">
-          <img src="images/billboard.png" class="d-block mx-lg-auto img-fluid" alt="Bootstrap Themes" width="700"
-            height="500" loading="lazy">
+          <img src="{% static 'images/billboard.png' %}" class="d-block mx-lg-auto img-fluid" alt="Bootstrap Themes" width="700" height="500" loading="lazy">
+
         </div>
 
         <div class="col-lg-6">
@@ -248,7 +269,7 @@
 
           <div class="swiper-slide">
             <div class="card">
-              <a href="https://opia.fia.cl/601/w3-article-126720.html"><img src="images/item15.png" class="card-img-top"
+              <a href="https://opia.fia.cl/601/w3-article-126720.html"><img src="{% static 'images/item15.png' %}" class="card-img-top"
                   alt="image"></a>
               <div class="card-body p-0">
                 <a href="https://opia.fia.cl/601/w3-article-126720.html">
@@ -258,7 +279,7 @@
 
                 <div class="card-text">
                   <ul class="d-flex">
-                    <li class="residence-list"> <img src="images/clock.png" alt="image">26-sep-2024</li>
+                    <li class="residence-list"> <img src="{% static 'images/clock.png' %}" alt="image">26-sep-2024</li>
                   </ul>
                 </div>
 
@@ -267,7 +288,7 @@
           </div>
           <div class="swiper-slide">
             <div class="card">
-              <a href="https://opia.fia.cl/601/articles-126033_archivo_01.pdf"><img src="images/item16.png"
+              <a href="https://opia.fia.cl/601/articles-126033_archivo_01.pdf"><img src="{% static 'images/item16.png'%}"
                   class="card-img-top" alt="image"></a>
               <div class="card-body p-0">
                 <a href="https://opia.fia.cl/601/articles-126033_archivo_01.pdf">
@@ -277,7 +298,7 @@
 
                 <div class="card-text">
                   <ul class="d-flex">
-                    <li class="residence-list"> <img src="images/clock.png" alt="image">28-jun-2024</li>
+                    <li class="residence-list"> <img src="{% static 'images/clock.png' %}" alt="image">28-jun-2024</li>
                   </ul>
                 </div>
 
@@ -286,7 +307,7 @@
           </div>
           <div class="swiper-slide">
             <div class="card">
-              <a href="https://opia.fia.cl/601/articles-126721_archivo_01.pdf"><img src="images/item17.png"
+              <a href="https://opia.fia.cl/601/articles-126721_archivo_01.pdf"><img src="{% static 'images/item17.png' %}"
                   class="card-img-top" alt="image"></a>
               <div class="card-body p-0">
                 <a href="https://opia.fia.cl/601/articles-126721_archivo_01.pdf">
@@ -296,7 +317,7 @@
 
                 <div class="card-text">
                   <ul class="d-flex">
-                    <li class="residence-list"> <img src="images/clock.png" alt="image">26-sep-2024</li>
+                    <li class="residence-list"> <img src="{% static 'images/clock.png' %}" alt="image">26-sep-2024</li>
                   </ul>
                 </div>
 
@@ -305,7 +326,7 @@
           </div>
           <div class="swiper-slide">
             <div class="card">
-              <a href="https://opia.fia.cl/601/articles-126034_archivo_01.pdf"><img src="images/item18.png"
+              <a href="https://opia.fia.cl/601/articles-126034_archivo_01.pdf"><img src="{% static 'images/item18.png' %}"
                   class="card-img-top" alt="image"></a>
               <div class="card-body p-0">
                 <a href="https://opia.fia.cl/601/articles-126034_archivo_01.pdf">
@@ -315,7 +336,7 @@
 
                 <div class="card-text">
                   <ul class="d-flex">
-                    <li class="residence-list"> <img src="images/clock.png" alt="image">28-jun-2024</li>
+                    <li class="residence-list"> <img src="{% static 'images/clock.png' %}" alt="image">28-jun-2024</li>
                   </ul>
                 </div>
 
@@ -324,7 +345,7 @@
           </div>
           <div class="swiper-slide">
             <div class="card">
-              <a href="https://opia.fia.cl/601/articles-126722_archivo_01.pdf"><img src="images/item19.png"
+              <a href="https://opia.fia.cl/601/articles-126722_archivo_01.pdf"><img src="{% static 'images/item19.png' %}"
                   class="card-img-top" alt="image"></a>
               <div class="card-body p-0">
                 <a href="https://opia.fia.cl/601/articles-126722_archivo_01.pdf">
@@ -334,7 +355,7 @@
 
                 <div class="card-text">
                   <ul class="d-flex">
-                    <li class="residence-list"> <img src="images/clock.png" alt="image">26-sep-2024</li>
+                    <li class="residence-list"> <img src="{% static 'images/clock.png' %}" alt="image">26-sep-2024</li>
                   </ul>
                 </div>
 
@@ -343,7 +364,7 @@
           </div>
           <div class="swiper-slide">
             <div class="card">
-              <a href="index.html"><img src="images/item20.png" class="card-img-top" alt="image"></a>
+              <a href="index.html"><img src="{% static 'images/item20.png' %}" class="card-img-top" alt="image"></a>
               <div class="card-body p-0">
                 <a href="index.html">
                   <h5 class="card-title pt-4">Boletín de Vigilancia e Inteligencia en Innovación, N°10</h5>
@@ -352,7 +373,7 @@
 
                 <div class="card-text">
                   <ul class="d-flex">
-                    <li class="residence-list"> <img src="images/clock.png" alt="image">28-jun-2024</li>
+                    <li class="residence-list"> <img src="{% static 'images/clock.png' %}" alt="image">28-jun-2024</li>
                   </ul>
                 </div>
 
@@ -365,7 +386,7 @@
       </div>
 
       <div class="residence-btn">
-        <a href="index.html" class="btn btn-primary btn-lg my-5">Ver todos los Boletines</a>
+        <a href="{% url 'catalogo' %}" class="btn btn-primary btn-lg my-5">Ver todos los Boletines</a>
       </div>
 
     </div>
@@ -379,14 +400,14 @@
         <h2 class="text-capitalize text-center m-0 py-lg-5">Pilares de acción</h2>
 
         <div class="text-center col-lg-4">
-          <img src="images/search.png" class="bd-placeholder-img rounded-circle" alt="Bootstrap Themes" width="140"
+          <img src="{% static 'images/search.png' %}" class="bd-placeholder-img rounded-circle" alt="Bootstrap Themes" width="140"
             height="140" loading="lazy">
           <h4 class="fw-normal mt-5 ">Plataformas de Información y Vigilancia Estratégica</h4>
           <p>Ponemos a tu disposición recursos de información para innovar en el sector silvoagropecuario.</p>
         </div>
 
         <div class="text-center col-lg-4">
-          <img src="images/price.png" class="bd-placeholder-img rounded-circle" alt="Bootstrap Themes" width="140"
+          <img src="{% static 'images/price.png' %}" class="bd-placeholder-img rounded-circle" alt="Bootstrap Themes" width="140"
             height="140" loading="lazy">
           <h4 class="fw-normal mt-5">Impulso para Innovar</h4>
           <p>Generar soluciones eficientes a problemas y/o oportunidades identificadas en el sector silvoagropecuario y
@@ -394,7 +415,7 @@
         </div>
 
         <div class="text-center col-lg-4">
-          <img src="images/time.png" class="bd-placeholder-img rounded-circle" alt="Bootstrap Themes" width="140"
+          <img src="{% static 'images/time.png' %}" class="bd-placeholder-img rounded-circle" alt="Bootstrap Themes" width="140"
             height="140" loading="lazy">
           <h4 class="fw-normal mt-5 ">Desarrollo de Capacidades</h4>
           <p>Facilitar oportunidades de aprendizaje orientadas a adquirir conocimientos, desarrollar habilidades y/o
@@ -414,7 +435,7 @@
 
         <div class="col-md-6">
           <div class="image-holder d-flex">
-            <img src="images/group.png" class="img-fluid" alt="Bootstrap Themes" loading="lazy">
+            <img src="{% static 'images/group.png' %}" class="img-fluid" alt="Bootstrap Themes" loading="lazy">
           </div>
         </div>
 
@@ -460,7 +481,7 @@
       <footer class="row row-cols-1 row-cols-sm-2 row-cols-md-5  ">
 
         <div class=" col-md-4">
-          <h3><img src="images/logofooter.png" alt="image"></h3>
+          <h3><img src="{% static 'images/logofooter.png' %}" alt="image"></h3>
           <i class="bi-facebook pe-4"></i>
           <i class="bi-instagram pe-4"></i>
           <i class="bi-twitter pe-4"></i>
@@ -512,12 +533,13 @@
 
 
 
-  <script src="js/jquery-1.11.0.min.js"></script>
-  <script src="js/script.js"></script>
+  <script src="{% static 'js/jquery-1.11.0.min.js' %}"></script>
+  <script src="{% static 'js/script.js' %}"></script>
   <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
     crossorigin="anonymous"></script>
+  
 </body>
 
 </html>
