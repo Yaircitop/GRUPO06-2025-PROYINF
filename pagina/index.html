@@ -133,7 +133,7 @@
                               </div>
                             </form>
                           </div>
-                          
+
                           <!-- Pestaña Registrarse -->
                           <div class="tab-pane fade" id="nav-register" role="tabpanel"
                             aria-labelledby="nav-register-tab">
@@ -183,6 +183,8 @@
                 // Mostrar la pestaña de registro
                 function showRegister() {
                   document.getElementById('nav-register-tab').click(); // Activa la pestaña de Registrarse
+                  document.getElementById('nav-sign-in').classList.remove('active', 'show'); // Desactiva la pestaña de Iniciar Sesión
+                  document.getElementById('nav-register').classList.add('active', 'show');
                 }
               </script>
 
@@ -194,6 +196,11 @@
                   // Evita que la letra 'k' esté en cualquier posición que no sea la última
                   if (input.indexOf('K') !== -1 && input.indexOf('K') !== input.length - 1) {
                     input = input.replace(/K/g, "");
+                  }
+
+                  // Evita que empiece con 0
+                  if (input.indexOf('0') === 0) {
+                    input = input.replace(/^0+/, "");
                   }
 
                   // Verifica que el input tenga al menos 3 caracteres antes del guion
