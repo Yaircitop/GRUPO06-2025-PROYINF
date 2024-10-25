@@ -69,194 +69,167 @@
               <li class="nav-item">
                 <a class="nav-link me-md-4" href="#help">Contacto</a>
               </li>
+
+
               {% if user.is_authenticated %}
               <li class="nav-item">
                 <span class="nav-link me-md-4">Hola, {{ user.username }}!</span>
-              </li>
-              <li class="nav-item">
+                
                 <a class="btn btn-danger" href="{% url 'logout' %}">Cerrar sesión</a>
               </li>
               {% else %}
               <li class="nav-item">
-                <a class="nav-link mx-md-4" href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">Iniciar
+                <a class="nav-link mx-md-4" href="#" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="showLogin()>Iniciar
                   sesión</a>
               </li>
-                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-                  aria-hidden="true">
-                  <div class="modal-dialog">
-                    <div class="modal-content">
-                      <div class="modal-header">
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+
+              </li>
+              <li class="nav-item">
+
+                <a class="btn-medium btn btn-primary" href="#" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                  onclick="showRegister()">Registrarse</a>
+              </li>
+
+              <!-- Modal Único -->
+              <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                      <div class="tabs-listing mt-4">
+                        <!-- Pestañas -->
+                        <nav>
+                          <div class="nav nav-tabs d-flex justify-content-center border-0" id="nav-tab" role="tablist">
+                            <button class="btn btn-outline-primary text-uppercase me-3" id="nav-sign-in-tab"
+                              data-bs-toggle="tab" data-bs-target="#nav-sign-in" type="button" role="tab"
+                              aria-controls="nav-sign-in" aria-selected="false">Iniciar sesión</button>
+                            <button class="btn btn-outline-primary text-uppercase" id="nav-register-tab"
+                              data-bs-toggle="tab" data-bs-target="#nav-register" type="button" role="tab"
+                              aria-controls="nav-register" aria-selected="false">Registrarse</button>
+                          </div>
+                        </nav>
+
+                        <!-- Contenido de las pestañas -->
+                        <div class="tab-content" id="nav-tabContent">
+                                                                    
+                          <!-- Pestaña Iniciar Sesión -->
+                          <div class="tab-pane fade active show" id="nav-sign-in" role="tabpanel" aria-labelledby="nav-sign-in-tab">
+                            <form id="form1" method="POST" action="{% url 'login' %}" class="form-group flex-wrap p-3">
+                              {% csrf_token %}                                                                                        
+                              <div class="form-floating col-lg-12 my-4">
+                                <input type="email" id="email-input" name="email" placeholder="Correo" required
+                                  class="form-control">
+                                <label for="email-input">Correo Electrónico</label>
+                              </div>
+                              <div class="form-floating col-lg-12 my-4">
+                                <input type="password" class="form-control" id="password-input" placeholder="Contraseña"
+                                  required>
+                                <label for="password-input">Contraseña</label>
+                              </div>
+                              <div class="d-grid my-3">
+                                <button class="btn btn-primary btn-lg btn-dark text-uppercase">Continuar</button>
+                              </div>
+                            </form>
+
+
+                          </div>
+                        </div>
                       </div>
-                      <div class="modal-body">
-                        <div class="tabs-listing mt-4">
-                          <!-- Pestañas -->
-                          <nav>
-                            <div class="nav nav-tabs d-flex justify-content-center border-0" id="nav-tab" role="tablist">
-                              <button class="btn btn-outline-primary text-uppercase me-3 active" id="nav-sign-in-tab"
-                                data-bs-toggle="tab" data-bs-target="#nav-sign-in" type="button" role="tab"
-                                aria-controls="nav-sign-in" aria-selected="true">Iniciar sesión</button>
-                              <button class="btn btn-outline-primary text-uppercase" id="nav-register-tab"
-                                data-bs-toggle="tab" data-bs-target="#nav-register" type="button" role="tab"
-                                aria-controls="nav-register" aria-selected="false">Registrarse</button>
-                            </div>
-                          </nav>
+                    </div>
+                  </div>
+                </div>
 
-                          <!-- Contenido de las pestañas -->
-                          <div class="tab-content" id="nav-tabContent">
-                            <!-- Pestaña Iniciar Sesión -->
-                            <div class="tab-pane fade active show" id="nav-sign-in" role="tabpanel"
-                              aria-labelledby="nav-sign-in-tab">
-                              <form id="form1" method="POST" action="{% url 'login' %}" class="form-group flex-wrap p-3 ">
-                                {% csrf_token %}
-                                <div class="form-floating col-lg-12 my-4">
-                                  <input type="text" id="username-input" name="username"
-                                    placeholder="Dirección de correo electrónico" required class="form-control">
-                                  <label for="email-input">Dirección de correo electrónico</label>
-                                </div>
 
-                                <div class="form-floating col-lg-12 my-4">
-                                  <input type="password" class="form-control" id="password-input" name="password" placeholder="Contraseña"
-                                    required>
-                                  <label for="password-input">Contraseña</label>
-                                </div>
 
-                                <div class="d-grid my-3">
-                                  <button
-                                    class="btn btn-primary btn-lg btn-dark text-uppercase btn-rounded-none fs-6">Continuar</button>
-                                </div>
-
-                              </form>
-                            </div>
-
-                          <!-- Pestaña Crear Cuenta Nueva -->
-                          <div class="tab-pane fade" id="nav-register" role="tabpanel" aria-labelledby="nav-register-tab">
+                          <!-- Pestaña Registrarse -->
+                          <div class="tab-pane fade" id="nav-register" role="tabpanel"
+                            aria-labelledby="nav-register-tab">
                             <form id="form2" method="POST" action="{% url 'signup' %}" class="form-group flex-wrap p-3">
-                                {% csrf_token %}
-                                  
-                                <!-- Campo RUN -->
-                                <div class="form-floating col-lg-12 my-4">
-                                    <input type="text" id="run-input" name="run" placeholder="RUN" class="form-control" required>
-                                    <label for="run-input">RUN</label>
-                                </div>
-                                  
-                                <!-- Campo Email (nombre único para el id) -->
-                                <div class="form-floating col-lg-12 my-4">
-                                    <input type="email" id="email-input-2" name="email" placeholder="Correo Electrónico" class="form-control" required>
-                                    <label for="email-input-2">Dirección de correo electrónico</label>
-                                </div>
-                                  
-                                <!-- Campo Contraseña -->
-                                <div class="form-floating col-lg-12 my-4">
-                                    <input type="password" id="inputPassword2" name="password" placeholder="Contraseña" class="form-control ps-3" required>
-                                    <label for="inputPassword2">Contraseña</label>
-                                </div>
-                                  
-                                <!-- Términos y condiciones -->
-                                <label class="py-3">
-                                    <input type="checkbox" required="" class="d-inline">
-                                    <span class="label-body text-black">Acepto la <a href="#" class="text-black password border-bottom">Política de Privacidad</a></span>
-                                </label>
-                          
-                                <!-- Botón de Registro -->
-                                <div class="d-grid my-3">
-                                    <button class="btn btn-primary btn-lg btn-dark text-uppercase btn-rounded-none fs-6">Sign Up</button>
-                                </div>
-                              </form>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                              {% csrf_token %}
+                              <div class="form-floating col-lg-12 my-4">
+                                <input type="text" id="run" name="run" placeholder="RUN" class="form-control" required>
+                                <label for="run-input">RUN</label>
+                              </div>
+                              <div class="form-floating col-lg-12 my-4">
+                                <input type="email" id="register-email" name="email" placeholder="Correo Electrónico"
+                                  class="form-control" required>
+                                <label for="register-email">Correo Electrónico</label>
+                              </div>
+                              <div class="form-floating col-lg-12 my-4">
+                                <input type="password" id="register-password" placeholder="Contraseña"
+                                  class="form-control" required>
+                                <label for="register-password">Contraseña</label>
+                              </div>
+                              <label class="py-3">
+                                <input type="checkbox" required>
+                                <span class="label-body">Acepto la <a href="#">Política de Privacidad</a></span>
+                              </label>
+                              <div class="d-grid my-3">
+                                <button class="btn btn-primary btn-lg btn-dark text-uppercase">Continuar</button>
+                              </div>
+                            </form>
+
+               
+              </div>
+
+              <script>
+                // Mostrar la pestaña de inicio de sesión
+                function showLogin() {
+                  document.getElementById('nav-sign-in-tab').click(); // Activa la pestaña de Iniciar Sesión
+                }
+
+                // Mostrar la pestaña de registro
+                function showRegister() {
+                  document.getElementById('nav-register-tab').click(); // Activa la pestaña de Registrarse
+                }
+              </script>
+
+              <script>
+                document.getElementById("run").addEventListener("input", function (e) {
+                  // Elimina los caracteres no numéricos, excepto por la letra 'k'
+                  let input = this.value.replace(/[^0-9kK]/g, "").toUpperCase();
+
+                  // Evita que la letra 'k' esté en cualquier posición que no sea la última
+                  if (input.indexOf('K') !== -1 && input.indexOf('K') !== input.length - 1) {
+                    input = input.replace(/K/g, "");
+                  }
+
+                  // Verifica que el input tenga al menos 3 caracteres antes del guion
+                  if (input.length >= 3) {
+                    // Formatea el RUN agregando puntos y guion
+                    input = input.substring(0, input.length - 1) + "-" + input.substr(input.length - 1);
+                    input = input.replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1.");
+                  }
+
+                  // Asigna el valor formateado de vuelta al input
+                  this.value = input;
+                });
+
+                // Agrega un evento para validar el RUN antes de enviar el formulario
+                document.querySelector("form").addEventListener("submit", function (e) {
+                  let input = document.getElementById("run").value.replace(/\D/g, "");
+                  let run = document.getElementById("run").value;
+
+                  // Verifica que el RUN sea válido: al menos 3 dígitos y el dígito verificador sea válido (número o 'K')
+                  if (input.length < 3 || !/^\d{1,8}-[\dKk]$/.test(run)) {
+                    alert("Ingrese un RUN válido con al menos 3 dígitos antes del guion y un dígito verificador correcto.");
+                    e.preventDefault(); // Evita enviar el formulario
+                  }
+                });
+              </script>
 
 
-                <li class="nav-item">
-                  <a class="btn-medium btn btn-primary" href="#" data-bs-toggle="modal"
-                    data-bs-target="#exampleModal2">Registrarse</a>
-                </li>
-                <!-- Modal -->
-                <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel"
-                  aria-hidden="true">
-                  <div class="modal-dialog">
-                    <div class="modal-content">
-                      <div class="modal-header">
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                      </div>
-                      <div class="modal-body">
-                        <div class="tabs-listing mt-4">
-                          <nav>
-                            <div class="nav nav-tabs d-flex justify-content-center border-0" id="nav-tab2" role="tablist">
-                              <button class="btn btn-outline-primary text-uppercase me-4 " id="nav-sign-in-tab2"
-                                data-bs-toggle="tab" data-bs-target="#nav-sign-in2" type="button" role="tab"
-                                aria-controls="nav-sign-in2" aria-selected="false">Iniciar sesión</button>
-                              <button class="btn btn-outline-primary text-uppercase active" id="nav-register-tab2"
-                                data-bs-toggle="tab" data-bs-target="#nav-register2" type="button" role="tab"
-                                aria-controls="nav-register2" aria-selected="true">Registrarse</button>
-                            </div>
-                          </nav>
-                          <div class="tab-content" id="nav-tabContent1">
-                            <div class="tab-pane fade " id="nav-sign-in2" role="tabpanel"
-                              aria-labelledby="nav-sign-in-tab2">
-                              <form id="form3" method="POST" action="{% url 'login' %}" class="form-group flex-wrap p-3 ">
-                                {% csrf_token %}
 
-                                <div class="form-floating col-lg-12 my-4">
-                                  <input type="text" id="username-input" name="username"
-                                    placeholder="Dirección de correo electrónico" required class="form-control">
-                                  <label for="email-input">Dirección de correo electrónico</label>
-                                </div>
 
-                                <div class="form-floating col-lg-12 my-4">
-                                  <input type="password" class="form-control" id="password-input" name="password" placeholder="Contraseña"
-                                    required>
-                                  <label for="password-input">Contraseña</label>
-                                </div>
 
-                                <div class="d-grid my-3">
-                                  <button
-                                    class="btn btn-primary btn-lg btn-dark text-uppercase btn-rounded-none fs-6">Continuar</button>
-                                </div>
-                              </form>
-                            </div>
-                            <div class="tab-pane fade active show" id="nav-register2" role="tabpanel"
-                              aria-labelledby="nav-register-tab2">
-                              <form id="form2" method="POST" action="{% url 'signup' %}" class="form-group flex-wrap p-3">
-                                {% csrf_token %}
-                                  
-                                <div class="form-floating col-lg-12 my-4">
-                                    <input type="text" id="run-input" name="run" placeholder="RUN" class="form-control" required>
-                                    <label for="run-input">RUN</label>
-                                </div>
-                                  
-                                <div class="form-floating col-lg-12 my-4">
-                                    <input type="email" id="email-input-2" name="email" placeholder="Correo Electrónico" class="form-control" required>
-                                    <label for="email-input-2">Dirección de correo electrónico</label>
-                                </div>
-                                  
-                                <div class="form-floating col-lg-12 my-4">
-                                    <input type="password" id="inputPassword2" name="password" placeholder="Contraseña" class="form-control ps-3" required>
-                                    <label for="inputPassword2">Contraseña</label>
-                                </div>
-                                  
-                                <label class="py-3">
-                                    <input type="checkbox" required="" class="d-inline">
-                                    <span class="label-body text-black">Acepto la <a href="#" class="text-black password border-bottom">Política de Privacidad</a></span>
-                                </label>
-  >
-                                <div class="d-grid my-3">
-                                    <button class="btn btn-primary btn-lg btn-dark text-uppercase btn-rounded-none fs-6">Sign Up</button>
-                                </div>
-                              </form>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+
+
+              <!-- revisar -->
               {%endif%} 
+
             </ul>
           </div>
         </div>
