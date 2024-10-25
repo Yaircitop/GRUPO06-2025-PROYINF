@@ -25,8 +25,9 @@
         </li>
         {% endfor %}
     </ul>
-
-    <a href="{% url 'subir_boletin' %}">Subir boletin</a>
+    {% if user.is_authenticated and user.is_staff %}
+        <a href="{% url 'subir_boletin' %}">Subir boletin</a>
+    {%endif%}
 
 </body>
 </html>

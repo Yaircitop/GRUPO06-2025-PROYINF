@@ -19,6 +19,7 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
+from django.contrib.auth.views import LogoutView
 from . import views
 
 urlpatterns = [
@@ -28,6 +29,8 @@ urlpatterns = [
     path('', views.home_view, name='home'),
     path('catalogo/', include('catalogo.urls')),
     path('subir_boletin/', include('subida_boletines.urls')),
+    path('welcome/', views.welcome_view, name='welcome'),
+    path('logout/', LogoutView.as_view(), name='logout'),
 ]
 
 if settings.DEBUG:
