@@ -140,7 +140,7 @@
                             <form id="form2" method="POST" action="{% url 'signup' %}" class="form-group flex-wrap p-3">
                               {% csrf_token %}
                               <div class="form-floating col-lg-12 my-4">
-                                <input type="text" id="run" name="run" placeholder="RUN" class="form-control" required>
+                                <input type="text" id="run-input" name="run" placeholder="RUN" class="form-control" required>
                                 <label for="run-input">RUN</label>
                               </div>
                               <div class="form-floating col-lg-12 my-4">
@@ -149,7 +149,7 @@
                                 <label for="register-email">Correo Electrónico</label>
                               </div>
                               <div class="form-floating col-lg-12 my-4">
-                                <input type="password" id="register-password" placeholder="Contraseña"
+                                <input type="password" id="register-password" name="password" placeholder="Contraseña"
                                   class="form-control" required>
                                 <label for="register-password">Contraseña</label>
                               </div>
@@ -189,7 +189,7 @@
               </script>
 
               <script>
-                document.getElementById("run").addEventListener("input", function (e) {
+                document.getElementById("run-input").addEventListener("input", function (e) {
                   // Elimina los caracteres no numéricos, excepto por la letra 'k'
                   let input = this.value.replace(/[^0-9kK]/g, "").toUpperCase();
 
