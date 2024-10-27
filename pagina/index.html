@@ -122,7 +122,7 @@
                             <form id="form1" method="POST" action="{% url 'login' %}" class="form-group flex-wrap p-3">
                               {% csrf_token %}                                                                                        
                               <div class="form-floating col-lg-12 my-4">
-                                <input type="email" id="email-input" name="email" placeholder="Correo" required
+                                <input type="email" id="email-input" name="username" placeholder="Correo" required
                                   class="form-control">
                                 <label for="email-input">Correo Electrónico</label>
                               </div>
@@ -147,7 +147,7 @@
                                 <label for="run-input">RUN</label>
                               </div>
                               <div class="form-floating col-lg-12 my-4">
-                                <input type="email" id="register-email" name="email" placeholder="Correo Electrónico"
+                                <input type="email" id="register-email" name="username" placeholder="Correo Electrónico"
                                   class="form-control" required>
                                 <label for="register-email">Correo Electrónico</label>
                               </div>
