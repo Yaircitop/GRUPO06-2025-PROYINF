@@ -268,7 +268,9 @@
         {% endfor %}
     </ul>
     {% if user.is_authenticated and user.is_staff %}
-        <a href="{% url 'subir_boletin' %}">Subir boletin</a>
+        <div class="text-center my-3">
+            <a href="{% url 'subir_boletin' %}" class="btn btn-primary btn-lg">Subir Boletín</a>
+        </div>
     {%endif%}
 
 
