@@ -14,10 +14,11 @@ def login_view(request):
             print(f"Usuario autenticado: {user}")
             login(request, user)
             print(f"login logrado exitosamente.")
-            return redirect('login')  # Redirige a la página principal después del login
+            return redirect('home')  # Redirige a la página principal después del login
         else:
             print("contraseña o usuario incorrecto")  # Informa si el formulario no es válido
             print(form.errors)  # Imprime los errores del formulario
+            return redirect("home")
     else:
         form = AuthenticationForm()
     return render(request, 'index.html', {'form': form})
