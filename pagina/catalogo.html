@@ -51,7 +51,10 @@
                                 <span class="nav-link me-md-4">Hola, {{ user.username }}</span>
                             </li>
                             <li class="nav-item">
-                                <a class="btn btn-danger" href="{% url 'logout' %}">Cerrar sesión</a>
+                                <form action="{% url 'logout' %}" method="post">
+                                    {% csrf_token %}
+                                    <button type="submit" class="btn btn-danger">Cerrar sesion</button>
+                                </form>
                             </li>
 
                             {% else %}
@@ -99,7 +102,7 @@
                                                 <label for="email-input">Correo Electrónico</label>
                                                 </div>
                                                 <div class="form-floating col-lg-12 my-4">
-                                                <input type="password" class="form-control" id="password-input" placeholder="Contraseña"
+                                                <input type="password" class="form-control" id="password-input" name="password" placeholder="Contraseña"
                                                     required>
                                                 <label for="password-input">Contraseña</label>
                                                 </div>
