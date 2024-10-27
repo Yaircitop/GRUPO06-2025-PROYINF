@@ -1,16 +1,115 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
+    {% load static %}
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Subir boletin</title>
+    <title>Subir Boletín</title>
+
+    <!-- CSS y Scripts -->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/vendor.css' %}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
 </head>
-<body>
-    <h1>Subir Boletin</h1>
-    <form method="post" enctype="multipart/form-data">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Subir</button>
-    </form>
+<body data-bs-spy="scroll" data-bs-target="#navbar-example2" tabindex="0">
+
+    <!-- Encabezado -->
+    <header id="nav" class="site-header position-fixed text-black bg-light">
+        <nav id="navbar-example2" class="navbar navbar-expand-lg py-2">
+            <div class="container">
+                <a class="navbar-brand" href="{% url 'home' %}"><img src="{% static 'images/logo.png' %}" alt="image"></a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+                    <ion-icon name="menu-outline" style="font-size: 30px;"></ion-icon>
+                </button>
+                
+                <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+                    <div class="offcanvas-header">
+                        <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Menú</h5>
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                    </div>
+                    <div class="offcanvas-body">
+                        <ul class="navbar-nav align-items-center justify-content-end align-items-center flex-grow-1">
+                            {% if user.is_authenticated %}
+                            <li class="nav-item">
+                                <span class="nav-link me-md-4">Hola, {{ user.username }}</span>
+                            </li>
+                            <li class="nav-item">
+                                <form action="{% url 'logout' %}" method="post">
+                                    {% csrf_token %}
+                                    <button type="submit" class="btn btn-danger">Cerrar sesion</button>
+                                </form>
+                            </li>
+                            {% endif %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Formulario de Subir Boletín -->
+    <section id="subir-boletin" class="d-flex justify-content-center align-items-center vh-100">
+        <div class="container text-center">
+            <div class="card p-4 mx-auto" style="max-width: 500px;">
+                <h3 class="text-black mb-4">Subir Boletín</h3>
+                <form method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button type="submit" class="btn btn-primary">Subir</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pie de página -->
+    <section id="footer">
+        <div class="container footer-container">
+            <footer class="row row-cols-1 row-cols-sm-2 row-cols-md-5">
+                <div class="col-md-4">
+                    <h3><img src="{% static 'images/logofooter.png' %}" alt="image"></h3>
+                    <i class="bi-facebook pe-4"></i>
+                    <i class="bi-instagram pe-4"></i>
+                    <i class="bi-twitter pe-4"></i>
+                    <i class="bi-youtube pe-4"></i>
+                </div>
+                <div class="col-md-2">
+                    <h5>Sitio de Interes</h5>
+                    <ul class="nav flex-column">
+                        <li class="nav-item mb-2"><a href="https://www.minagri.gob.cl" class="nav-link p-0">Ministerio de Agricultura</a></li>
+                        <li class="nav-item mb-2"><a href="https://anid.cl" class="nav-link p-0">ANID</a></li>
+                        <li class="nav-item mb-2"><a href="https://www.corfo.cl/sites/cpp/homecorfo" class="nav-link p-0">Corfo</a></li>
+                        <li class="nav-item mb-2"><a href="https://cnid.cl" class="nav-link p-0">CNID</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-2">
+                    <ul class="nav flex-column">
+                        <li class="nav-item mb-2"><a href="https://www.fia.cl/pilares-de-accion/licitaciones-de-proveedores/" class="nav-link p-0">Licitaciones de proveedores</a></li>
+                        <li class="nav-item mb-2"><a href="https://www.fia.cl/transparencia/" class="nav-link p-0">Gobierno Transparente</a></li>
+                        <li class="nav-item mb-2"><a href="https://www.fia.cl/solicitud-informacion-ley-de-transparencia/" class="nav-link p-0">Solicitudes de Transparencia </a></li>
+                    </ul>
+                </div>
+                <div class="col-md-2">
+                    <h5>Contacto</h5>
+                    <ul class="nav flex-column">
+                        <li class="nav-item mb-2"><a href="https://www.google.cl/maps/place/Loreley+1582,+La+Reina,+Regi%C3%B3n+Metropolitana" class="nav-link p-0">Loreley #1582, La Reina, Santiago </a></li>
+                        <li class="nav-item mb-2"><a href="tel:56224313000" class="nav-link p-0">Teléfono: +562 24313000</a></li>
+                        <li class="nav-item mb-2"><a href="mailto:contacto@fia.cl" class="nav-link p-0">contacto@fia.cl</a></li>
+                    </ul>
+                </div>
+            </footer>
+        </div>
+    </section>
+
+    <!-- Scripts -->
+    <script src="{% static 'js/jquery-1.11.0.min.js' %}"></script>
+    <script src="{% static 'js/script.js' %}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+        crossorigin="anonymous"></script>
+
 </body>
 </html>
