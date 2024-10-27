@@ -1,12 +1,13 @@
 <!doctype html>
-<html lang="en">
+<html lang="es">
 
 <head>
+  {% load static %}
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title> Rentiz - Real Estate Free Website Template</title>
+  <title> FUNDACIÓN PARA LA INNOVACIÓN AGRARIA</title>
 
-  <link rel="stylesheet" type="text/css" href="css/vendor.css">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/vendor.css' %}">
 
   <!-- Link Swiper's CSS -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
@@ -17,7 +18,9 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
 
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+
+  <img src="{% static 'images/logo.png' %}" alt="logo">
 
   <!-- Google Fonts ================================================== -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -26,7 +29,7 @@
     rel="stylesheet">
 
   <!-- script ================================================== -->
-  <script src="js/modernizr.js"></script>
+  <script src="{% static 'js/modernizr.js' %}"></script>
   <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
   <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 </head>
@@ -34,22 +37,21 @@
 <body data-bs-spy="scroll" data-bs-target="#navbar-example2" tabindex="0">
 
   <!-- nav bar start  -->
-  <header id="nav" class="site-header position-fixed text-white bg-dark">
+  <header id="nav" class="site-header position-fixed text-black bg-light">
     <nav id="navbar-example2" class="navbar navbar-expand-lg py-2">
 
       <div class="container ">
 
-        <a class="navbar-brand" href="./index.html"><img src="images/logo.png" alt="image"></a>
+        <a class="navbar-brand" href="{% url 'home' %}"><img src="{% static 'images/logo.png' %}" alt="image"></a>
 
 
-        <button class="navbar-toggler text-white" type="button" data-bs-toggle="offcanvas"
-          data-bs-target="#offcanvasNavbar2" aria-controls="offcanvasNavbar2" aria-label="Toggle navigation"><ion-icon
-            name="menu-outline" style="font-size: 30px;"></ion-icon></button>
+        <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
+          aria-controls="offcanvasNavbar" aria-label="Toggle navigation"><ion-icon name="menu-outline"
+            style="font-size: 30px;"></ion-icon></button>
 
-        <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar2"
-          aria-labelledby="offcanvasNavbar2Label">
+        <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
           <div class="offcanvas-header">
-            <h5 class="offcanvas-title" id="offcanvasNavbar2Label">Menu</h5>
+            <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Menú</h5>
             <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"
               aria-label="Close"></button>
           </div>
@@ -59,45 +61,41 @@
                 <a class="nav-link active me-md-4" href="#billboard">Home</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link me-md-4" href="#residence">Properties</a>
+                <a class="nav-link me-md-4" href="#boletines">Boletines</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link me-md-4" href="#about-us">About</a>
+                <a class="nav-link me-md-4" href="#about-us">Nosotros</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link me-md-4" href="#help">Contact</a>
-              </li>
-              <li class="nav-item dropdown ">
-                <a class="nav-link me-md-4 text-center dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
-                  aria-expanded="false">Pages</a>
-                <ul class="dropdown-menu dropdown-menu-dark">
-                  <li><a href="index.html" class="dropdown-item">About</a>
-                  </li>
-                  <li><a href="index.html" class="dropdown-item">Blog</a>
-                  </li>
-                  <li><a href="index.html" class="dropdown-item">Blog-Single <span
-                        class="badge bg-secondary">PRO</span></a></li>
-                  <li><a href="index.html" class="dropdown-item">Properties <span
-                        class="badge bg-secondary">PRO</span></a></li>
-                  <li><a href="index.html" class="dropdown-item">Property-Single <span
-                        class="badge bg-secondary">PRO</span></a></li>
-                  <li><a href="index.html" class="dropdown-item">Contact <span
-                        class="badge bg-secondary">PRO</span></a></li>
-                  <li><a href="index.html" class="dropdown-item">Review <span
-                        class="badge bg-secondary">PRO</span></a></li>
-                  <li><a href="index.html" class="dropdown-item">Agents</a>
-                  </li>
-                  <li><a href="index.html" class="dropdown-item">FAQs</a>
-                  </li>
-                  <li><a href="index.html" class="dropdown-item">Styles</a>
-                  </li>
-                </ul>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link mx-md-4" href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">Login</a>
+                <a class="nav-link me-md-4" href="#help">Contacto</a>
               </li>
 
-              <!-- Modal -->
+
+
+              {% if user.is_authenticated %}
+              <li class="nav-item">
+                <span class="nav-link me-md-4">Hola, {{ user.username }}</span>
+              </li>
+              <li class="nav-item">
+                <form action="{% url 'logout' %}" method="post">
+                  {% csrf_token %}
+                  <button type="submit" class="btn btn-danger">Cerrar sesion</button>
+                </form>
+              </li>
+
+              {% else %}
+              <li class="nav-item">
+                <a class="nav-link mx-md-4" href="#" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="showLogin()">Iniciar sesión</a>
+              </li>
+
+              
+              <li class="nav-item">
+
+                <a class="btn-medium btn btn-primary" href="#" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                  onclick="showRegister()">Registrarse</a>
+              </li>
+
+              <!-- Modal Único -->
               <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
                 aria-hidden="true">
                 <div class="modal-dialog">
@@ -107,180 +105,146 @@
                     </div>
                     <div class="modal-body">
                       <div class="tabs-listing mt-4">
+                        <!-- Pestañas -->
                         <nav>
                           <div class="nav nav-tabs d-flex justify-content-center border-0" id="nav-tab" role="tablist">
-                            <button class="btn btn-outline-primary text-uppercase me-3 active" id="nav-sign-in-tab"
+                            <button class="btn btn-outline-primary text-uppercase me-3" id="nav-sign-in-tab"
                               data-bs-toggle="tab" data-bs-target="#nav-sign-in" type="button" role="tab"
-                              aria-controls="nav-sign-in" aria-selected="true">Log In</button>
+                              aria-controls="nav-sign-in" aria-selected="false">Iniciar sesión</button>
                             <button class="btn btn-outline-primary text-uppercase" id="nav-register-tab"
                               data-bs-toggle="tab" data-bs-target="#nav-register" type="button" role="tab"
-                              aria-controls="nav-register" aria-selected="false">Sign Up</button>
+                              aria-controls="nav-register" aria-selected="false">Registrarse</button>
                           </div>
                         </nav>
-                        <div class="tab-content" id="nav-tabContent">
-                          <div class="tab-pane fade active show" id="nav-sign-in" role="tabpanel"
-                            aria-labelledby="nav-sign-in-tab">
-                            <form id="form1" class="form-group flex-wrap p-3 ">
-                              <div class="form-input col-lg-12 my-4">
-                                <label for="exampleInputEmail1"
-                                  class="form-label fs-6 text-uppercase fw-bold text-black">Email
-                                  Address</label>
-                                <input type="text" id="exampleInputEmail1" name="email" placeholder="Email"
-                                  class="form-control ps-3">
-                              </div>
-                              <div class="form-input col-lg-12 my-4">
-                                <label for="inputPassword1"
-                                  class="form-label  fs-6 text-uppercase fw-bold text-black">Password</label>
-                                <input type="password" id="inputPassword1" placeholder="Password"
-                                  class="form-control ps-3" aria-describedby="passwordHelpBlock">
-                                <div id="passwordHelpBlock" class="form-text text-center">
-                                  <a href="#" class=" password">Forgot Password ?</a>
-                                </div>
 
+                        <!-- Contenido de las pestañas -->
+                        <div class="tab-content" id="nav-tabContent">
+                                                                    
+                          <!-- Pestaña Iniciar Sesión -->
+                          <div class="tab-pane fade active show" id="nav-sign-in" role="tabpanel" aria-labelledby="nav-sign-in-tab">
+                            <form id="form1" method="POST" action="{% url 'login' %}" class="form-group flex-wrap p-3">
+                              {% csrf_token %}                                                                                        
+                              <div class="form-floating col-lg-12 my-4">
+                                <input type="email" id="email-input" name="username" placeholder="Correo" required
+                                  class="form-control">
+                                <label for="email-input">Correo Electrónico</label>
                               </div>
-                              <label class="py-3">
-                                <input type="checkbox" required="" class="d-inline">
-                                <span class="label-body text-black">Remember Me</span>
-                              </label>
+                              <div class="form-floating col-lg-12 my-4">
+                                <input type="password" class="form-control" id="password-input" name="password" placeholder="Contraseña"
+                                  required>
+                                <label for="password-input">Contraseña</label>
+                              </div>
                               <div class="d-grid my-3">
-                                <button class="btn btn-primary btn-lg btn-dark text-uppercase btn-rounded-none fs-6">Log
-                                  In</button>
+                                <button class="btn btn-primary btn-lg btn-dark text-uppercase">Continuar</button>
                               </div>
                             </form>
                           </div>
+
+                          <!-- Pestaña Registrarse -->
                           <div class="tab-pane fade" id="nav-register" role="tabpanel"
                             aria-labelledby="nav-register-tab">
-                            <form id="form2" class="form-group flex-wrap p-3 ">
-                              <div class="form-input col-lg-12 my-4">
-                                <label for="exampleInputEmail2"
-                                  class="form-label fs-6 text-uppercase fw-bold text-black">Email
-                                  Address</label>
-                                <input type="text" id="exampleInputEmail2" name="email" placeholder="Email"
-                                  class="form-control ps-3">
+                            <form id="form2" method="POST" action="{% url 'signup' %}" class="form-group flex-wrap p-3">
+                              {% csrf_token %}
+                              <div class="form-floating col-lg-12 my-4">
+                                <input type="text" id="run-input" name="run" placeholder="RUN" class="form-control" required>
+                                <label for="run-input">RUN</label>
                               </div>
-                              <div class="form-input col-lg-12 my-4">
-                                <label for="inputPassword2"
-                                  class="form-label  fs-6 text-uppercase fw-bold text-black">Password</label>
-                                <input type="password" id="inputPassword2" placeholder="Password"
-                                  class="form-control ps-3" aria-describedby="passwordHelpBlock">
+                              <div class="form-floating col-lg-12 my-4">
+                                <input type="email" id="register-email" name="email" placeholder="Correo Electrónico"
+                                  class="form-control" required>
+                                <label for="register-email">Correo Electrónico</label>
+                              </div>
+                              <div class="form-floating col-lg-12 my-4">
+                                <input type="password" id="register-password" name="password" placeholder="Contraseña"
+                                  class="form-control" required>
+                                <label for="register-password">Contraseña</label>
                               </div>
                               <label class="py-3">
-                                <input type="checkbox" required="" class="d-inline">
-                                <span class="label-body text-black">I agree to the <a href="#"
-                                    class="text-black password border-bottom">Privacy Policy</a>
-                                </span>
+                                <input type="checkbox" required>
+                                <span class="label-body">Acepto la <a href="#">Política de Privacidad</a></span>
                               </label>
                               <div class="d-grid my-3">
-                                <button
-                                  class="btn btn-primary btn-lg btn-dark text-uppercase btn-rounded-none fs-6">Sign
-                                  Up</button>
+                                <button class="btn btn-primary btn-lg btn-dark text-uppercase">Continuar</button>
                               </div>
                             </form>
-                          </div>
+
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
+
+
+
+                          
+               
               </div>
 
+              <script>
+                // Mostrar la pestaña de inicio de sesión
+                function showLogin() {
+                  document.getElementById('nav-sign-in-tab').click(); // Activa la pestaña de Iniciar Sesión
+                }
 
-              <li class="nav-item">
-                <a class="btn-medium btn btn-primary" href="#" data-bs-toggle="modal"
-                  data-bs-target="#exampleModal2">Sign Up</a>
-              </li>
-              <!-- Modal -->
-              <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel"
-                aria-hidden="true">
-                <div class="modal-dialog">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                      <div class="tabs-listing mt-4">
-                        <nav>
-                          <div class="nav nav-tabs d-flex justify-content-center border-0" id="nav-tab2" role="tablist">
-                            <button class="btn btn-outline-primary text-uppercase me-4 " id="nav-sign-in-tab2"
-                              data-bs-toggle="tab" data-bs-target="#nav-sign-in2" type="button" role="tab"
-                              aria-controls="nav-sign-in2" aria-selected="false">Log In</button>
-                            <button class="btn btn-outline-primary text-uppercase active" id="nav-register-tab2"
-                              data-bs-toggle="tab" data-bs-target="#nav-register2" type="button" role="tab"
-                              aria-controls="nav-register2" aria-selected="true">Sign Up</button>
-                          </div>
-                        </nav>
-                        <div class="tab-content" id="nav-tabContent1">
-                          <div class="tab-pane fade " id="nav-sign-in2" role="tabpanel"
-                            aria-labelledby="nav-sign-in-tab2">
-                            <form id="form3" class="form-group flex-wrap p-3 ">
-                              <div class="form-input col-lg-12 my-4">
-                                <label for="exampleInputEmail3"
-                                  class="form-label fs-6 text-uppercase fw-bold text-black">Email
-                                  Address</label>
-                                <input type="text" id="exampleInputEmail3" name="email" placeholder="Email"
-                                  class="form-control ps-3">
-                              </div>
-                              <div class="form-input col-lg-12 my-4">
-                                <label for="inputPassword3"
-                                  class="form-label  fs-6 text-uppercase fw-bold text-black">Password</label>
-                                <input type="password" id="inputPassword3" placeholder="Password"
-                                  class="form-control ps-3" aria-describedby="passwordHelpBlock">
-                                <div id="passwordHelpBlock2" class="form-text text-center">
-                                  <a href="#" class=" password">Forgot Password ?</a>
-                                </div>
+                // Mostrar la pestaña de registro
+                function showRegister() {
+                  document.getElementById('nav-register-tab').click(); // Activa la pestaña de Registrarse
+                  document.getElementById('nav-sign-in').classList.remove('active', 'show'); // Desactiva la pestaña de Iniciar Sesión
+                  document.getElementById('nav-register').classList.add('active', 'show');
+                }
+              </script>
 
-                              </div>
-                              <label class="py-3">
-                                <input type="checkbox" required="" class="d-inline">
-                                <span class="label-body text-black">Remember Me</span>
-                              </label>
-                              <div class="d-grid my-3">
-                                <button class="btn btn-primary btn-lg btn-dark text-uppercase btn-rounded-none fs-6">Log
-                                  In</button>
-                              </div>
-                            </form>
-                          </div>
-                          <div class="tab-pane fade active show" id="nav-register2" role="tabpanel"
-                            aria-labelledby="nav-register-tab2">
-                            <form id="form4" class="form-group flex-wrap p-3 ">
-                              <div class="form-input col-lg-12 my-4">
-                                <label for="exampleInputEmail4"
-                                  class="form-label fs-6 text-uppercase fw-bold text-black">Email
-                                  Address</label>
-                                <input type="text" id="exampleInputEmail4" name="email" placeholder="Email"
-                                  class="form-control ps-3">
-                              </div>
-                              <div class="form-input col-lg-12 my-4">
-                                <label for="inputPassword4"
-                                  class="form-label  fs-6 text-uppercase fw-bold text-black">Password</label>
-                                <input type="password" id="inputPassword4" placeholder="Password"
-                                  class="form-control ps-3" aria-describedby="passwordHelpBlock">
-                              </div>
-                              <label class="py-3">
-                                <input type="checkbox" required="" class="d-inline">
-                                <span class="label-body text-black">I agree to the <a href="#"
-                                    class="text-black password border-bottom">Privacy Policy</a>
-                                </span>
-                              </label>
-                              <div class="d-grid my-3">
-                                <button
-                                  class="btn btn-primary btn-lg btn-dark text-uppercase btn-rounded-none fs-6">Sign
-                                  Up</button>
-                              </div>
-                            </form>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+              <script>
+                document.getElementById("run-input").addEventListener("input", function (e) {
+                  // Elimina los caracteres no numéricos, excepto por la letra 'k'
+                  let input = this.value.replace(/[^0-9kK]/g, "").toUpperCase();
+
+                  // Evita que la letra 'k' esté en cualquier posición que no sea la última
+                  if (input.indexOf('K') !== -1 && input.indexOf('K') !== input.length - 1) {
+                    input = input.replace(/K/g, "");
+                  }
+
+                  // Evita que empiece con 0
+                  if (input.indexOf('0') === 0) {
+                    input = input.replace(/^0+/, "");
+                  }
+
+                  // Verifica que el input tenga al menos 3 caracteres antes del guion
+                  if (input.length >= 3) {
+                    // Formatea el RUN agregando puntos y guion
+                    input = input.substring(0, input.length - 1) + "-" + input.substr(input.length - 1);
+                    input = input.replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1.");
+                  }
+
+                  // Asigna el valor formateado de vuelta al input
+                  this.value = input;
+                });
+
+                // Agrega un evento para validar el RUN antes de enviar el formulario
+                document.querySelector("form").addEventListener("submit", function (e) {
+                  let input = document.getElementById("run").value.replace(/\D/g, "");
+                  let run = document.getElementById("run").value;
+
+                  // Verifica que el RUN sea válido: al menos 3 dígitos y el dígito verificador sea válido (número o 'K')
+                  if (input.length < 3 || !/^\d{1,8}-[\dKk]$/.test(run)) {
+                    alert("Ingrese un RUN válido con al menos 3 dígitos antes del guion y un dígito verificador correcto.");
+                    e.preventDefault(); // Evita enviar el formulario
+                  }
+                });
+              </script>
+
+
+
+
+
+
+
+              <!-- revisar -->
+              {%endif%} 
+
             </ul>
-
           </div>
         </div>
-
-
       </div>
     </nav>
   </header>
@@ -291,102 +255,23 @@
       <div class="row flex-lg-row-reverse align-items-center ">
 
         <div class="col-lg-6">
-          <img src="images/billboard.png" class="d-block mx-lg-auto img-fluid" alt="Bootstrap Themes" width="700"
-            height="500" loading="lazy">
+          <img src="{% static 'images/billboard.png' %}" class="d-block mx-lg-auto img-fluid" alt="Bootstrap Themes" width="700" height="500" loading="lazy">
+
         </div>
 
         <div class="col-lg-6">
-          <h1 class=" text-capitalize  lh-1 my-3">Perfect way to buy and sell a home</h1>
-          <p class="lead">Diam vitae, nec mattis lectus quam pretium amet facilisis. Urna, massa aliqua dui
-            pellentesque. Ac, gravida in eget non amet eget purus non.</p>
-          <nav class="navbar navbar-expand-lg billboard-nav">
-            <div class="container billboard-search p-0">
-
-              <div class="row billboard-row">
-                <div class="col-lg-3 billboard-select">
-                  <select class="form-select mb-2 mb-lg-0" aria-label="Purpose">
-                    <option selected>Purpose</option>
-                    <option value="1">Buy</option>
-                    <option value="2">Rent</option>
-                    <option value="3">Sell</option>
-                    <option value="4">Something else here</option>
-
-                  </select>
-                </div>
-                <div class="col-lg-3 billboard-select">
-                  <select class="form-select mb-2 mb-lg-0" aria-label="Location">
-                    <option selected>Location</option>
-                    <option value="1">Texas</option>
-                    <option value="2">Miami</option>
-                    <option value="3">Chicago</option>
-                    <option value="4">New York</option>
-                    <option value="5">Something else here</option>
-                  </select>
-                </div>
-                <div class="col-lg-3 billboard-select">
-                  <select class="form-select mb-2 mb-lg-0" aria-label="Type">
-                    <option selected>Type</option>
-                    <option value="1">House</option>
-                    <option value="2">Appartment</option>
-                    <option value="3">Villa</option>
-                    <option value="4">Loft</option>
-                    <option value="5">Bungalow</option>
-                    <option value="3">Something else here</option>
-                  </select>
-                </div>
-
-                <div class="col-lg-3 billboard-btn">
-                  <button type="submit" class="btn btn-primary btn-lg billboard-search">Search</button>
-                </div>
-              </div>
-
-
-            </div>
-          </nav>
+          <h1 class=" text-capitalize  lh-1 my-3">FIA</h1>
+          <h2 class="text-capitalize  lh-1 my-3">el apoyo que necesitas para innovar</h2>
+          <p class="lead">Una mirada a la innovación agro en los distintos territorios del país</p>
         </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Feature start  -->
-  <section id="feature">
-    <div class="container py-5">
-      <div class="row">
-        <div class="section-header align-center mb-5">
-          <h2 class=" text-capitalize m-0">Featured In</h2>
-        </div>
-      </div>
-      <div class="row d-flex justify-content-between">
-        <div class="col-md-2 ">
-          <div class="my-3" role="group" aria-label="3 / 7" style="width: 158.667px; margin-right: 20px;"><img
-              alt="image" src="images/logo1.png"></div>
-        </div>
-        <div class="col-md-2">
-          <div class="my-3" role="group" aria-label="3 / 7" style="width: 158.667px; margin-right: 20px;"><img
-              alt="image" src="images/logo2.png"></div>
-        </div>
-        <div class="col-md-2">
-          <div class="my-3" role="group" aria-label="3 / 7" style="width: 158.667px; margin-right: 20px;"><img
-              alt="image" src="images/logo3.png"></div>
-        </div>
-        <div class="col-md-2">
-          <div class="my-3" role="group" aria-label="3 / 7" style="width: 158.667px; margin-right: 20px;"><img
-              alt="image" src="images/logo4.png"></div>
-        </div>
-        <div class="col-md-2">
-          <div class="my-3" role="group" aria-label="3 / 7" style="width: 158.667px; margin-right: 20px;"><img
-              alt="image" src="images/logo6.png"></div>
-        </div>
-
-
       </div>
     </div>
   </section>
 
   <!-- Residence start  -->
-  <section id="residence">
+  <section id="boletines">
     <div class="container  my-5 py-5">
-      <h2 class="text-capitalize m-0 py-lg-5">Popular Residence</h2>
+      <h2 class="text-capitalize m-0 py-lg-5">Boletines populares</h2>
 
       <div class="swiper-button-next residence-swiper-next  residence-arrow"></div>
       <div class="swiper-button-prev residence-swiper-prev residence-arrow"></div>
@@ -396,18 +281,17 @@
 
           <div class="swiper-slide">
             <div class="card">
-              <a href="index.html"><img src="images/item15.png" class="card-img-top" alt="image"></a>
+              <a href="https://opia.fia.cl/601/w3-article-126720.html"><img src="{% static 'images/item15.png' %}" class="card-img-top"
+                  alt="image"></a>
               <div class="card-body p-0">
-                <a href="index.html">
-                  <h5 class="card-title pt-4">Aliva Priva Jalvin</h5>
+                <a href="https://opia.fia.cl/601/w3-article-126720.html">
+                  <h5 class="card-title pt-4">Boletín de Vigilancia e Inteligencia en Innovación, N°10</h5>
                 </a>
-                <p class="card-text">1087 Pin Oak Drive, Clinton, USA</p>
+                <p class="card-text">Adaptación y Mitigación al Cambio Climático</p>
 
                 <div class="card-text">
                   <ul class="d-flex">
-                    <li class="residence-list"> <img src="images/bed.png" alt="image"> 4 bed</li>
-                    <li class="residence-list"> <img src="images/bath.png" alt="image"> 2 bath</li>
-                    <li class="residence-list"> <img src="images/square.png" alt="image"> 1203 Sqft.</li>
+                    <li class="residence-list"> <img src="{% static 'images/clock.png' %}" alt="image">26-sep-2024</li>
                   </ul>
                 </div>
 
@@ -416,18 +300,17 @@
           </div>
           <div class="swiper-slide">
             <div class="card">
-              <a href="index.html"><img src="images/item16.png" class="card-img-top" alt="image"></a>
+              <a href="https://opia.fia.cl/601/articles-126033_archivo_01.pdf"><img src="{% static 'images/item16.png'%}"
+                  class="card-img-top" alt="image"></a>
               <div class="card-body p-0">
-                <a href="index.html">
-                  <h5 class="card-title pt-4">Aliva Priva Jalvin</h5>
+                <a href="https://opia.fia.cl/601/articles-126033_archivo_01.pdf">
+                  <h5 class="card-title pt-4">Boletín de Vigilancia e Inteligencia en Innovación, N°09</h5>
                 </a>
-                <p class="card-text">1087 Pin Oak Drive, Clinton, USA</p>
+                <p class="card-text">Adaptación y Mitigación al Cambio Climático</p>
 
                 <div class="card-text">
                   <ul class="d-flex">
-                    <li class="residence-list"> <img src="images/bed.png" alt="image"> 4 bed</li>
-                    <li class="residence-list"> <img src="images/bath.png" alt="image"> 2 bath</li>
-                    <li class="residence-list"> <img src="images/square.png" alt="image"> 1203 Sqft.</li>
+                    <li class="residence-list"> <img src="{% static 'images/clock.png' %}" alt="image">28-jun-2024</li>
                   </ul>
                 </div>
 
@@ -436,18 +319,17 @@
           </div>
           <div class="swiper-slide">
             <div class="card">
-              <a href="index.html"><img src="images/item17.png" class="card-img-top" alt="image"></a>
+              <a href="https://opia.fia.cl/601/articles-126721_archivo_01.pdf"><img src="{% static 'images/item17.png' %}"
+                  class="card-img-top" alt="image"></a>
               <div class="card-body p-0">
-                <a href="index.html">
-                  <h5 class="card-title pt-4">Aliva Priva Jalvin</h5>
+                <a href="https://opia.fia.cl/601/articles-126721_archivo_01.pdf">
+                  <h5 class="card-title pt-4">Boletín de Vigilancia e Inteligencia en Innovación, N°10</h5>
                 </a>
-                <p class="card-text">1087 Pin Oak Drive, Clinton, USA</p>
+                <p class="card-text">Gestión Sostenible de Recursos Hídricos</p>
 
                 <div class="card-text">
                   <ul class="d-flex">
-                    <li class="residence-list"> <img src="images/bed.png" alt="image"> 4 bed</li>
-                    <li class="residence-list"> <img src="images/bath.png" alt="image"> 2 bath</li>
-                    <li class="residence-list"> <img src="images/square.png" alt="image"> 1203 Sqft.</li>
+                    <li class="residence-list"> <img src="{% static 'images/clock.png' %}" alt="image">26-sep-2024</li>
                   </ul>
                 </div>
 
@@ -456,18 +338,17 @@
           </div>
           <div class="swiper-slide">
             <div class="card">
-              <a href="index.html"><img src="images/item1.jpg" class="card-img-top" alt="image"></a>
+              <a href="https://opia.fia.cl/601/articles-126034_archivo_01.pdf"><img src="{% static 'images/item18.png' %}"
+                  class="card-img-top" alt="image"></a>
               <div class="card-body p-0">
-                <a href="index.html">
-                  <h5 class="card-title pt-4">Aliva Priva Jalvin</h5>
+                <a href="https://opia.fia.cl/601/articles-126034_archivo_01.pdf">
+                  <h5 class="card-title pt-4">Boletín de Vigilancia e Inteligencia en Innovación, N°09</h5>
                 </a>
-                <p class="card-text">1087 Pin Oak Drive, Clinton, USA</p>
+                <p class="card-text">Gestión Sostenible de Recursos Hídricos</p>
 
                 <div class="card-text">
                   <ul class="d-flex">
-                    <li class="residence-list"> <img src="images/bed.png" alt="image"> 4 bed</li>
-                    <li class="residence-list"> <img src="images/bath.png" alt="image"> 2 bath</li>
-                    <li class="residence-list"> <img src="images/square.png" alt="image"> 1203 Sqft.</li>
+                    <li class="residence-list"> <img src="{% static 'images/clock.png' %}" alt="image">28-jun-2024</li>
                   </ul>
                 </div>
 
@@ -476,18 +357,17 @@
           </div>
           <div class="swiper-slide">
             <div class="card">
-              <a href="index.html"><img src="images/item2.jpg" class="card-img-top" alt="image"></a>
+              <a href="https://opia.fia.cl/601/articles-126722_archivo_01.pdf"><img src="{% static 'images/item19.png' %}"
+                  class="card-img-top" alt="image"></a>
               <div class="card-body p-0">
-                <a href="index.html">
-                  <h5 class="card-title pt-4">Aliva Priva Jalvin</h5>
+                <a href="https://opia.fia.cl/601/articles-126722_archivo_01.pdf">
+                  <h5 class="card-title pt-4">Boletín de Vigilancia e Inteligencia en Innovación, N°10</h5>
                 </a>
-                <p class="card-text">1087 Pin Oak Drive, Clinton, USA</p>
+                <p class="card-text">Sistemas Alimentarios Sostenibles</p>
 
                 <div class="card-text">
                   <ul class="d-flex">
-                    <li class="residence-list"> <img src="images/bed.png" alt="image"> 4 bed</li>
-                    <li class="residence-list"> <img src="images/bath.png" alt="image"> 2 bath</li>
-                    <li class="residence-list"> <img src="images/square.png" alt="image"> 1203 Sqft.</li>
+                    <li class="residence-list"> <img src="{% static 'images/clock.png' %}" alt="image">26-sep-2024</li>
                   </ul>
                 </div>
 
@@ -496,38 +376,16 @@
           </div>
           <div class="swiper-slide">
             <div class="card">
-              <a href="index.html"><img src="images/item3.jpg" class="card-img-top" alt="image"></a>
+              <a href="index.html"><img src="{% static 'images/item20.png' %}" class="card-img-top" alt="image"></a>
               <div class="card-body p-0">
                 <a href="index.html">
-                  <h5 class="card-title pt-4">Aliva Priva Jalvin</h5>
+                  <h5 class="card-title pt-4">Boletín de Vigilancia e Inteligencia en Innovación, N°10</h5>
                 </a>
-                <p class="card-text">1087 Pin Oak Drive, Clinton, USA</p>
+                <p class="card-text">Sistemas Alimentarios Sostenibles</p>
 
                 <div class="card-text">
                   <ul class="d-flex">
-                    <li class="residence-list"> <img src="images/bed.png" alt="image"> 4 bed</li>
-                    <li class="residence-list"> <img src="images/bath.png" alt="image"> 2 bath</li>
-                    <li class="residence-list"> <img src="images/square.png" alt="image"> 1203 Sqft.</li>
-                  </ul>
-                </div>
-
-              </div>
-            </div>
-          </div>
-          <div class="swiper-slide">
-            <div class="card">
-              <a href="index.html"><img src="images/item4.jpg" class="card-img-top" alt="image"></a>
-              <div class="card-body p-0">
-                <a href="index.html">
-                  <h5 class="card-title pt-4">Aliva Priva Jalvin</h5>
-                </a>
-                <p class="card-text">1087 Pin Oak Drive, Clinton, USA</p>
-
-                <div class="card-text">
-                  <ul class="d-flex">
-                    <li class="residence-list"> <img src="images/bed.png" alt="image"> 4 bed</li>
-                    <li class="residence-list"> <img src="images/bath.png" alt="image"> 2 bath</li>
-                    <li class="residence-list"> <img src="images/square.png" alt="image"> 1203 Sqft.</li>
+                    <li class="residence-list"> <img src="{% static 'images/clock.png' %}" alt="image">28-jun-2024</li>
                   </ul>
                 </div>
 
@@ -537,13 +395,10 @@
 
         </div>
 
-
-
-
       </div>
 
       <div class="residence-btn">
-        <a href="index.html" class="btn btn-primary btn-lg my-5">View All Properties</a>
+        <a href="{% url 'catalogo' %}" class="btn btn-primary btn-lg my-5">Ver todos los Boletines</a>
       </div>
 
     </div>
@@ -554,130 +409,55 @@
     <div class="container">
       <div class="row py-lg-5">
 
-        <h2 class="text-capitalize text-center m-0 py-lg-5">Why to choose us</h2>
+        <h2 class="text-capitalize text-center m-0 py-lg-5">Pilares de acción</h2>
 
         <div class="text-center col-lg-4">
-          <img src="images/search.png" class="bd-placeholder-img rounded-circle" alt="Bootstrap Themes" width="140"
+          <img src="{% static 'images/search.png' %}" class="bd-placeholder-img rounded-circle" alt="Bootstrap Themes" width="140"
             height="140" loading="lazy">
-          <h4 class="fw-normal mt-5 ">Easy to find</h4>
-          <p>Urna, massa aliqua dui pellentesque. Ac, gravida in. Diam vitae, nec mattis lectus quam pretium amet
-            facilisis.</p>
+          <h4 class="fw-normal mt-5 ">Plataformas de Información y Vigilancia Estratégica</h4>
+          <p>Ponemos a tu disposición recursos de información para innovar en el sector silvoagropecuario.</p>
         </div>
 
         <div class="text-center col-lg-4">
-          <img src="images/price.png" class="bd-placeholder-img rounded-circle" alt="Bootstrap Themes" width="140"
+          <img src="{% static 'images/price.png' %}" class="bd-placeholder-img rounded-circle" alt="Bootstrap Themes" width="140"
             height="140" loading="lazy">
-          <h4 class="fw-normal mt-5">Affordable Prices</h4>
-          <p>Urna, massa aliqua dui pellentesque. Ac, gravida in. Diam vitae, nec mattis lectus quam pretium amet
-            facilisis.</p>
+          <h4 class="fw-normal mt-5">Impulso para Innovar</h4>
+          <p>Generar soluciones eficientes a problemas y/o oportunidades identificadas en el sector silvoagropecuario y
+            la cadena agroalimentaria nacional</p>
         </div>
 
         <div class="text-center col-lg-4">
-          <img src="images/time.png" class="bd-placeholder-img rounded-circle" alt="Bootstrap Themes" width="140"
+          <img src="{% static 'images/time.png' %}" class="bd-placeholder-img rounded-circle" alt="Bootstrap Themes" width="140"
             height="140" loading="lazy">
-          <h4 class="fw-normal mt-5 ">Quickly Process</h4>
-          <p>Ac, gravida in diam vitae, nec mattis lectus quam pretium amet facilisis. Urna, massa aliqua dui
-            pellentesque. </p>
+          <h4 class="fw-normal mt-5 ">Desarrollo de Capacidades</h4>
+          <p>Facilitar oportunidades de aprendizaje orientadas a adquirir conocimientos, desarrollar habilidades y/o
+            integrar las competencias necesarias para actores del sector</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Testimonial start  -->
-  <section id="testimonial">
-    <div class="container my-5">
-
-
-
-      <div class="swiper testimonial-swiper">
-        <div class="swiper-wrapper">
-
-          <div class="swiper-slide">
-            <div class="row my-5 py-lg-5">
-              <div class="col-md-8 mx-auto">
-                <img src="images/quote.png" class="rounded mx-auto d-inline" alt="...">
-                <p class="testimonial-p mt-4">Massa semper non rutrum orci facilisi sit. Lectus porta quam a fringilla
-                  eget viverra sem. Vulputate massa hendrerit turpis gravida tempor, porttitor.</p>
-
-                <div class="row">
-                  <div class="col-md-8">
-                    <p class="pt-5 mb-1">Elena Pravo</p>
-                    <p class="">Ceo, Upstate</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="swiper-slide">
-            <div class="row my-5 py-lg-5">
-              <div class="col-md-8 mx-auto">
-                <img src="images/quote.png" class="rounded mx-auto d-inline" alt="...">
-                <p class="testimonial-p mt-4">Massa semper non rutrum orci facilisi sit. Lectus porta quam a fringilla
-                  eget viverra sem. Vulputate massa hendrerit turpis gravida tempor, porttitor.</p>
-
-                <div class="row">
-                  <div class="col-md-8">
-                    <p class="pt-5 mb-1">Elena Pravo</p>
-                    <p class="">Ceo, Upstate</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="swiper-slide">
-            <div class="row my-5 py-lg-5">
-              <div class="col-md-8 mx-auto">
-                <img src="images/quote.png" class="rounded mx-auto d-inline" alt="...">
-                <p class="testimonial-p mt-4">Massa semper non rutrum orci facilisi sit. Lectus porta quam a fringilla
-                  eget viverra sem. Vulputate massa hendrerit turpis gravida tempor, porttitor.</p>
-
-                <div class="row">
-                  <div class="col-md-8">
-                    <p class="pt-5 mb-1">Elena Pravo</p>
-                    <p class="">Ceo, Upstate</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-
-
-
-        </div>
-
-        <div class=" testimonial-swiper-button col-md-3 position-absolute">
-          <div class="swiper-button-prev testimonial-arrow"></div>
-          <div class="arrow-divider"> | </div>
-          <div class="swiper-button-next testimonial-arrow"></div>
-        </div>
-
-      </div>
-    </div>
-  </section>
 
   <!-- Help start  -->
   <section id="help" class="py-5"
-    style="background: linear-gradient(270deg, #1A242F 0.01%, rgba(26, 36, 47, 0.00) 100%);">
+    style="background: linear-gradient(270deg, #c8c8c8 0.01%, rgba(26, 36, 47, 0.00) 100%);">
     <div class="container-lg my-5">
 
       <div class="row d-flex justify-content-between align-items-center">
 
         <div class="col-md-6">
           <div class="image-holder d-flex">
-            <img src="images/group.png" class="img-fluid" alt="Bootstrap Themes" loading="lazy">
+            <img src="{% static 'images/group.png' %}" class="img-fluid" alt="Bootstrap Themes" loading="lazy">
           </div>
         </div>
 
         <div class="col-md-6">
           <div class="text-content ps-md-5 mt-4 mt-md-0">
-            <h2 class="text-capitalize">We help people to find homes</h2>
-            <p>Mauris orci donec blandit maecenas. Orci lorem purus porttitor massa consectetur. Neque, vestibulum sed
-              varius magna et at. Eu, adipiscing morbi augue justo. Nibh laoreet volutpat quis velit. Blandit aliquam
-              donec sed morbi congue eget lorem viverra porta id lobortis.</p>
-            <a href="index.html" class="btn btn-primary btn-lg">Get In Touch</a>
+            <h2 class="text-capitalize">Nuestra Misión</h2>
+            <p>Promover procesos de innovación a través del desarrollo capacidades, articulación, información
+              estratégica y la generación de innovaciones que contribuyan al desarrollo sostenible del sector
+              silvoagropecuario y la cadena agroalimentaria en todas las regiones del país.</p>
+            <a href="https://www.fia.cl/fia-en-el-territorio-nacional/" class="btn btn-primary btn-lg">Contáctanos</a>
           </div>
         </div>
 
@@ -691,15 +471,16 @@
     <div class="container my-5 py-5">
       <div class="row featurette py-lg-5 ">
         <div class="col-md-5 order-md-1 d-flex">
-          <h1 class="text-capitalize  lh-1 mb-3">Let’s simply begin with rentiz.</h1>
+          <h2 class="text-capitalize  lh-1 mb-3">Programas Estratégicos</h1>
         </div>
         <div class="col-md-7 order-md-2">
           <div class="text-content ps-md-5 mt-4 mt-md-0">
-            <p class="py-lg-2">Neque, vestibulum sed varius magna et at. Eu, adipiscing morbi augue justo. Nibh
-              laoreet volutpat quis velit. Blandit aliquam donec sed morbi congue eget lorem viverra porta id
-              lobortis.</p>
-            <a href="index.html" class="btn btn-primary btn-lg px-4 me-md-2">Get
-              Started</a>
+            <p class="py-lg-2">FIA bajo las directrices y prioridades emanadas desde el Ministerio de Agricultura, ha
+              puesto en marcha cuatro Programas Estratégicos de Innovación, para contribuir a fomentar en la AFC,
+              mujeres y jóvenes rurales, la innovación y que logren así, convertirse en actores sociales relevantes
+              tanto en el desarrollo de su territorio como en el ecosistema local.</p>
+            <a href="https://www.fia.cl/programas-estrategicos/" class="btn btn-primary btn-lg px-4 me-md-2"> Revisa
+              nuestros programas</a>
           </div>
         </div>
       </div>
@@ -712,8 +493,7 @@
       <footer class="row row-cols-1 row-cols-sm-2 row-cols-md-5  ">
 
         <div class=" col-md-4">
-          <h3><img src="images/logo.png" alt="image"></h3>
-          <p>Neque, vestibulum sed varius magna et at. Eu, adipiscing morbi augue.</p>
+          <h3><img src="{% static 'images/logofooter.png' %}" alt="image"></h3>
           <i class="bi-facebook pe-4"></i>
           <i class="bi-instagram pe-4"></i>
           <i class="bi-twitter pe-4"></i>
@@ -721,40 +501,37 @@
         </div>
 
         <div class="col-md-2 ">
-          <h5>Project</h5>
+          <h5>Sitio de Interes</h5>
           <ul class="nav flex-column">
-            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 ">Houses</a></li>
-            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 ">Rooms</a></li>
-            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 ">Flats</a></li>
-            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 ">Appartments</a></li>
+            <li class="nav-item mb-2"><a href="https://www.minagri.gob.cl" class="nav-link p-0 ">Ministerio de
+                agricultura</a></li>
+            <li class="nav-item mb-2"><a href="https://anid.cl" class="nav-link p-0 ">ANID</a></li>
+            <li class="nav-item mb-2"><a href="https://www.corfo.cl/sites/cpp/homecorfo" class="nav-link p-0 ">Corfo</a>
+            </li>
+            <li class="nav-item mb-2"><a href="https://cnid.cl" class="nav-link p-0 ">CNID</a></li>
           </ul>
         </div>
 
         <div class="col-md-2 ">
-          <h5>Company</h5>
           <ul class="nav flex-column">
-            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 ">How we work ?</a></li>
-            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 ">Capital </a></li>
-            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 ">Security </a></li>
+            <li class="nav-item mb-2"><a href="https://www.fia.cl/pilares-de-accion/licitaciones-de-proveedores/"
+                class="nav-link p-0 ">Licitaciones de proveedores</a></li>
+            <li class="nav-item mb-2"><a href="https://www.fia.cl/transparencia/" class="nav-link p-0 ">Gobierno
+                Transparente</a></li>
+            <li class="nav-item mb-2"><a href="https://www.fia.cl/solicitud-informacion-ley-de-transparencia/"
+                class="nav-link p-0 ">Solicitudes de Transparencia </a></li>
           </ul>
         </div>
 
-        <div class="col-md-2 ">
-          <h5>Movement</h5>
-          <ul class="nav flex-column">
-            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 ">Movement</a></li>
-            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 ">Support us</a></li>
-            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 ">Pricing</a></li>
-          </ul>
-        </div>
 
         <div class="col-md-2 ">
-          <h5>Help</h5>
+          <h5>Contacto</h5>
           <ul class="nav flex-column">
-            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 ">Privacy </a></li>
-            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 ">Condition</a></li>
-            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 ">Blog</a></li>
-            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 ">FAQs</a></li>
+            <li class="nav-item mb-2"><a
+                href="https://www.google.cl/maps/place/Loreley+1582,+La+Reina,+Regi%C3%B3n+Metropolitana/data=!4m2!3m1!1s0x9662ce53bfb0bf93:0x3d18e3be5923e3e0?sa=X&ved=0ahUKEwiUqs7lnZ7YAhULfZAKHZuWB_YQ8gEIKzAB"
+                class="nav-link p-0 ">Loreley #1582, La Reina, Santiago </a></li>
+            <li class="nav-item mb-2"><a href="tel:56224313000" class="nav-link p-0 ">Teléfono: +562 24313000</a></li>
+            <li class="nav-item mb-2"><a href="mailto:contacto@fia.cl" class="nav-link p-0 ">contacto@fia.cl</a></li>
           </ul>
         </div>
       </footer>
@@ -762,34 +539,19 @@
 
 
 
-    <footer class="d-flex flex-wrap justify-content-between align-items-center border-top"></footer>
 
-    <div class="container">
-      <footer class="d-flex flex-wrap justify-content-between align-items-center py-2 ">
-        <div class="col-md-8 d-flex align-items-center">
-          <p>© 2023 TemplatesJungle, Inc. All rights reserved.</p>
-
-        </div>
-        <div class="col-md-4 d-flex align-items-center">
-          <p>HTML template by: <a href="https://templatesjungle.com/" class="link-primary"
-              target="_blank">TemplatesJungle</a> <br> Distributed by: <a href="https://themewagon.com" class="link-primary"
-              target="_blank">ThemeWagon</a></p>
-
-        </div>
-
-      </footer>
-    </div>
   </section>
 
 
 
 
-  <script src="js/jquery-1.11.0.min.js"></script>
-  <script src="js/script.js"></script>
+  <script src="{% static 'js/jquery-1.11.0.min.js' %}"></script>
+  <script src="{% static 'js/script.js' %}"></script>
   <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
     crossorigin="anonymous"></script>
+  
 </body>
 
 </html>
