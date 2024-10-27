@@ -29,7 +29,6 @@ urlpatterns = [
     path('', views.home_view, name='home'),
     path('catalogo/', include('catalogo.urls')),
     path('subir_boletin/', include('subida_boletines.urls')),
-    path('welcome/', views.welcome_view, name='welcome'),
     path('logout/', LogoutView.as_view(), name='logout'),
 ]
 

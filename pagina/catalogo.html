@@ -261,9 +261,9 @@
     <ul>
         {% for pdf in pdfs %}
         <li>
-            <a href="{{ pdf.file.url }}" target="_blank">{{ pdf.title }}</a>
             <a href="{{ pdf.file.url }}" download>Descargar</a>
-            <p>Categoria: {{ pdf.categoria }}</p>
+            <h3><a href="{{ pdf.file.url }}" target="_blank">Título: {{ pdf.titulo }}</a></h3>
+            <p>Categoria: {{ pdf.categoria }}</p>      
         </li>
         {% endfor %}
     </ul>
