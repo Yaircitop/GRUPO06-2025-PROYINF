@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <h1>Crear Boletín de Noticias</h1>
+
+    <!-- Formulario para subir una nueva noticia -->
+    <h2>Subir Noticia</h2>
+    <form method="POST" action="{% url 'crear_boletin' %}">
+        {% csrf_token %}
+        {{ news_form.as_p }}
+        <button type="submit" name="upload_news">Subir Noticia</button>
+    </form>
+
+    <!-- Formulario para buscar y resumir noticias -->
+    <h2>Crear Boletín y Resumir Noticias</h2>
+    <form method="POST" action="{% url 'crear_boletin' %}">
+        {% csrf_token %}
+        {{ keyword_form.as_p }}
+        <button type="submit" name="search_and_summarize">Crear Boletín y Resumir</button>
+    </form>
+
+    <!-- Mostrar resultados de búsqueda y resúmenes -->
+    {% if summarized_news %}
+        <h2>Noticias Relevantes y Resumidas</h2>
+        <ul>
+            {% for summary in summarized_news %}
+                <li>
+                    <h3>{{ summary.title }}</h3>
+                    <p>{{ summary.summary }}</p>
+                </li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+</body>
+</html>
