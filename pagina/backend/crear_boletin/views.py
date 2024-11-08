@@ -1,9 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .forms import NewsForm, KeywordForm
 from .models import News
 from .utils import summarize_news
 from django.db.models import Q
-
 
 def crear_boletin(request):
     news_form = NewsForm()
