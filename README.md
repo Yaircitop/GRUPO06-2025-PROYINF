@@ -12,6 +12,7 @@ Puede acceder a la Wiki mediante el siguiente [enlace](https://github.com/Yairci
 
 ## Videos
 * [Video Presentación Cliente](https://www.youtube.com/watch?v=abJau21SDIk&ab_channel=RicardoSalasLetelier)
+* [Video Resultados finales](https://youtu.be/iKKBvk4KxaE)
 
 ## Pasos necesarios para levantar el proyecto
 
