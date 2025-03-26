@@ -1,11 +1,11 @@
-# GRUPO11
+# GRUPO6
 
-Este es el repositorio del *Grupo 11*, cuyos integrantes son:
+Este es el repositorio del *Grupo 6*, cuyos integrantes son:
 
-* Bruno Decinti - 201911524-3
-* Nicolás Muñoz - 202104641-0
+* Tomas Campusano - 201930518-2
+* Francisco Encina - 
 * Yair Cárdenas - 202273579-1
-* **Tutor**: Josefa Flores
+* **Tutor**: Benjamin Daza
 
 ## Wiki
 Puede acceder a la Wiki mediante el siguiente [enlace](https://github.com/Yaircitop/GRUPO11-2024-PROYINF/wiki)
@@ -49,3 +49,6 @@ OPENAI_API_KEY=tu_key_OpenAI// tu clave secreta creada para la utilización de l
 ..\GRUPO11-2024-PROYINF\pagina\backend> py manage.py runserver
 ```
 * Luego de esto, se podrá acceder a la página web, la cual inicialmente no tendrá boletines en su catálogo, ni tampoco registros de usuarios, puesto que al trabajar con bases de datos locales, no hay archivos compartidos a través de estas, por tanto utiliza las tablas de la base de datos recién creada. Para recorrer todas las funcionalidades del frontend, recomendamos crear usuarios a gusto, uno de ellos con el rol de is_staff, para que este pueda acceder a la subida y creación de boletines (subir_boletin.html y crear_boletin.html) o archivos de ejemplo (se pueden observar en la carpeta media/pdfs algunos archivos que como grupo utilizamos de ejemplos para el debugging) al catálogo de la web (catalogo.html) y se pueda probar la página desde la visión de un usuario regular o un administrador.
+
+## Continuación del semestre actual.
+## TODO
