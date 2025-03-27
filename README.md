@@ -3,7 +3,7 @@
 Este es el repositorio del *Grupo 6*, cuyos integrantes son:
 
 * Tomas Campusano - 201930518-2
-* Francisco Encina - 
+* Francisco Encina - 202030536-6
 * Yair Cárdenas - 202273579-1
 * **Tutor**: Benjamin Daza
 
