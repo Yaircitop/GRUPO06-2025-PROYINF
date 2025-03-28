@@ -53,5 +53,5 @@ OPENAI_API_KEY=tu_key_OpenAI// tu clave secreta creada para la utilización de l
 ## Continuación del semestre actual.
 Con el objetivo de seguir mejorando y ampliando las funcionalidades de nuestro proyecto de página web para la gestión de boletines en la agroindustria, hemos planificado varios desarrollos clave para los próximos meses. Uno de nuestros principales enfoques será la migración del proyecto a tecnologías más eficientes y seguras, lo que nos permitirá actualizarlo según los estándares del mercado. Además, buscamos hacer que la plataforma sea más robusta y flexible, facilitando la incorporación de nuevas funcionalidades de manera sencilla.
 
-También implementaremos las historias de usuario pendientes de la asignatura anterior y eliminaremos la dependencia de la biblioteca de OpenAI, ya que, al ser un componente de pago, genera inconvenientes en el desarrollo, especialmente al no contar con ingresos que justifiquen su uso.
+También implementaremos las historias de usuario pendientes de la asignatura anterior y se evaluara en base a los requerimientos nuevos del cliente la eliminacion de la dependencia de la biblioteca de OpenAI, ya que, al ser un componente de pago, genera inconvenientes en el desarrollo, especialmente al no contar con ingresos que justifiquen su uso.
 
