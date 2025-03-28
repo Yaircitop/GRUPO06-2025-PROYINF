@@ -51,4 +51,7 @@ OPENAI_API_KEY=tu_key_OpenAI// tu clave secreta creada para la utilización de l
 * Luego de esto, se podrá acceder a la página web, la cual inicialmente no tendrá boletines en su catálogo, ni tampoco registros de usuarios, puesto que al trabajar con bases de datos locales, no hay archivos compartidos a través de estas, por tanto utiliza las tablas de la base de datos recién creada. Para recorrer todas las funcionalidades del frontend, recomendamos crear usuarios a gusto, uno de ellos con el rol de is_staff, para que este pueda acceder a la subida y creación de boletines (subir_boletin.html y crear_boletin.html) o archivos de ejemplo (se pueden observar en la carpeta media/pdfs algunos archivos que como grupo utilizamos de ejemplos para el debugging) al catálogo de la web (catalogo.html) y se pueda probar la página desde la visión de un usuario regular o un administrador.
 
 ## Continuación del semestre actual.
-## TODO
+Con el objetivo de seguir mejorando y ampliando las funcionalidades de nuestro proyecto de página web para la gestión de boletines en la agroindustria, hemos planificado varios desarrollos clave para los próximos meses. Uno de nuestros principales enfoques será la migración del proyecto a tecnologías más eficientes y seguras, lo que nos permitirá actualizarlo según los estándares del mercado. Además, buscamos hacer que la plataforma sea más robusta y flexible, facilitando la incorporación de nuevas funcionalidades de manera sencilla.
+
+También implementaremos las historias de usuario pendientes de la asignatura anterior y eliminaremos la dependencia de la biblioteca de OpenAI, ya que, al ser un componente de pago, genera inconvenientes en el desarrollo, especialmente al no contar con ingresos que justifiquen su uso.
+
