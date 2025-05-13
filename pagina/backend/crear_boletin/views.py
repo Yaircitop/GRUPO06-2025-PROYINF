@@ -1,13 +1,12 @@
 from django.shortcuts import render, redirect
 from .forms import NewsForm, KeywordForm
 from .models import News
-from .utils import summarize_news
 from django.db.models import Q
 
 def crear_boletin(request):
     news_form = NewsForm()
     keyword_form = KeywordForm()
-    summarized_news = []
+    
 
     if request.method == "POST":
         # Revisamos qué botón fue presionado
@@ -34,10 +33,9 @@ def crear_boletin(request):
 
                 # Filtrar las noticias que coincidan con las palabras clave
                 relevant_news = News.objects.filter(query).distinct()  # Evita duplicados
-                summarized_news = summarize_news(relevant_news)
+                
 
     return render(request, 'crear_boletin.html', {
         'news_form': news_form,
         'keyword_form': keyword_form,
-        'summarized_news': summarized_news,
     })
