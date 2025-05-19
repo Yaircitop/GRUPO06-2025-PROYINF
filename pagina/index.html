@@ -123,21 +123,44 @@
                           <!-- Pestaña Iniciar Sesión -->
                           <div class="tab-pane fade active show" id="nav-sign-in" role="tabpanel" aria-labelledby="nav-sign-in-tab">
                             <form id="form1" method="POST" action="{% url 'login' %}" class="form-group flex-wrap p-3">
-                              {% csrf_token %}                                                                                        
+                              {% csrf_token %}
+                            
+                              {% if form.non_field_errors %}
+                                <div class="alert alert-danger">
+                                  {% for error in form.non_field_errors %}
+                                    <p>{{ error }}</p>
+                                  {% endfor %}
+                                </div>
+                              {% endif %}
+                            
                               <div class="form-floating col-lg-12 my-4">
-                                <input type="email" id="email-input" name="username" placeholder="Correo" required
-                                  class="form-control">
+                                <input type="email" id="email-input" name="username"
+                                       value="{{ form.username.value|default_if_none:'' }}"
+                                       placeholder="Correo" class="form-control {% if form.username.errors %}is-invalid{% endif %}" required>
                                 <label for="email-input">Correo Electrónico</label>
+                                {% for error in form.username.errors %}
+                                  <div class="invalid-feedback d-block">
+                                    {{ error }}
+                                  </div>
+                                {% endfor %}
                               </div>
+                            
                               <div class="form-floating col-lg-12 my-4">
-                                <input type="password" class="form-control" id="password-input" name="password" placeholder="Contraseña"
-                                  required>
+                                <input type="password" class="form-control {% if form.password.errors %}is-invalid{% endif %}"
+                                       id="password-input" name="password" placeholder="Contraseña" required>
                                 <label for="password-input">Contraseña</label>
+                                {% for error in form.password.errors %}
+                                  <div class="invalid-feedback d-block">
+                                    {{ error }}
+                                  </div>
+                                {% endfor %}
                               </div>
+                            
                               <div class="d-grid my-3">
                                 <button class="btn btn-primary btn-lg btn-dark text-uppercase">Continuar</button>
                               </div>
                             </form>
+                            
                           </div>
 
                           <!-- Pestaña Registrarse -->

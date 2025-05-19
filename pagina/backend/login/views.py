@@ -2,7 +2,6 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.forms import AuthenticationForm
 
-# Create your views here.
 
 def login_view(request):
     if request.method == 'POST':
@@ -18,7 +17,7 @@ def login_view(request):
         else:
             print("contraseña o usuario incorrecto")  # Informa si el formulario no es válido
             print(form.errors)  # Imprime los errores del formulario
-            return redirect("home")
+            return render(request, 'index.html', {'form': form})
     else:
         form = AuthenticationForm()
     return render(request, 'index.html', {'form': form})
