@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.forms import AuthenticationForm
+from django.contrib import messages
 
 # Create your views here.
 
@@ -18,7 +19,7 @@ def login_view(request):
         else:
             print("contraseña o usuario incorrecto")  # Informa si el formulario no es válido
             print(form.errors)  # Imprime los errores del formulario
-            return redirect("home")
+            messages.error(request, "Usuario o contraseña incorrectos.")
     else:
         form = AuthenticationForm()
     return render(request, 'index.html', {'form': form})
