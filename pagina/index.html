@@ -166,6 +166,12 @@
                           <!-- Pestaña Registrarse -->
                           <div class="tab-pane fade" id="nav-register" role="tabpanel"
                             aria-labelledby="nav-register-tab">
+                            <!-- 🔴 AQUI insertas el mensaje de error si lo hay -->
+                            {% if error %}
+                              <div class="alert alert-danger" role="alert">
+                                {{ error }}
+                              </div>
+                            {% endif %}
                             <form id="form2" method="POST" action="{% url 'signup' %}" class="form-group flex-wrap p-3">
                               {% csrf_token %}
                               <div class="form-floating col-lg-12 my-4">
@@ -255,12 +261,6 @@
                   }
                 });
               </script>
-
-
-
-
-
-
 
               <!-- revisar -->
               {%endif%} 

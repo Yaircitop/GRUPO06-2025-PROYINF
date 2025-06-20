@@ -30,7 +30,7 @@ urlpatterns = [
     path('catalogo/', include('catalogo.urls')),
     path('subir_boletin/', include('subida_boletines.urls')),
     path('logout/', LogoutView.as_view(), name='logout'),
-    #path('crear_boletin', include('crear_boletin.urls')),
+    path('crear_boletin', include('crear_boletin.urls')),
 ]
 
 if settings.DEBUG:

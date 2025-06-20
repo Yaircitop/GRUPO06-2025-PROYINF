@@ -4,6 +4,7 @@ from django.contrib.auth import login
 from django.db import IntegrityError
 from .models import UserProfile
 
+INDEX_TEMPLATE= 'index.html'
 def signup_view(request):
     if request.method == 'POST':
         run = request.POST['run']
@@ -13,7 +14,7 @@ def signup_view(request):
         try:
             # Verifica si ya existe un usuario con el mismo RUN
             if UserProfile.objects.filter(run=run).exists():
-                return render(request, 'index.html', {
+                return render(request, INDEX_TEMPLATE, {
                     'error': 'El RUN ya está registrado, por favor intenta con otro.'
                 })
 
@@ -30,9 +31,9 @@ def signup_view(request):
             return redirect('login')
         
         except IntegrityError:
-            return render(request, 'index.html', {
+            return render(request, INDEX_TEMPLATE, {
                 'error': 'Ya existe un usuario con este correo electrónico.'
             })
     
-    return render(request, 'index.html')
+    return render(request, INDEX_TEMPLATE)
 

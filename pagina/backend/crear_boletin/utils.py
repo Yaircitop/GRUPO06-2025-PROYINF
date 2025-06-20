@@ -4,17 +4,16 @@ from django.conf import settings
 
 #print("OpenAI API Key:", settings.OPENAI_API_KEY)
 # Configura la clave de API de OpenAI
-#openai.api_key = settings.OPENAI_API_KEY
-'''
+openai.api_key = settings.OPENAI_API_KEY
+
 def summarize_news(news_list):
     summarized_news = []  # Lista para almacenar los resúmenes
     for news in news_list:
         # Construye el prompt para resumir una sola noticia
         prompt = f"Resumen de la noticia: {news.title}\n\n{news.content}\n\nGenera un resumen breve y conciso:"
-        
         try:
             # Llama a la API de OpenAI para generar el resumen
-            #response = openai.ChatCompletion.create(
+            response = openai.ChatCompletion.create(
                 model=settings.OPENAI_MODEL,
                 messages=[
                     {"role": "system", "content": "Eres un asistente que resume noticias."},
@@ -37,4 +36,3 @@ def summarize_news(news_list):
             })
     
     return summarized_news
-'''
