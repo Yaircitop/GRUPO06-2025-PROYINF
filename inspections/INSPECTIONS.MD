@@ -1,5 +1,5 @@
 # Inspección
-Al realizar la inspección mediante el software Sonarqube se detectarón:
+Al realizar la inspección mediante el software Sonarqube se detectaron:
 * 1 error grave, el cual tiene relación con la seguridad y trato de datos sensibles.
 * 6 errores altos, de los cuales sólo 1 tiene vínculo con HU's/funcionamiento, los demás se tratan de errores encontrados en archivos .js extraídos de plantillas en la librería Bootstrap, todos relacionadas a diseño.
 * El resto de errores encontrados tienen un menor nivel de riesgo y al mismo tiempo son en su gran mayoría, al igual que en el punto anterior, errores encontrados en plantillas .css descargadas desde Bootstrap.
