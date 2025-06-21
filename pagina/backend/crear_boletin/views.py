@@ -3,6 +3,10 @@ from .forms import NewsForm, KeywordForm
 from .models import News
 from .utils import summarize_news
 from django.db.models import Q
+from django.http import HttpResponse
+from docx import Document
+from io import BytesIO 
+import io
 
 def crear_boletin(request):
     news_form = NewsForm()
@@ -35,6 +39,24 @@ def crear_boletin(request):
                 # Filtrar las noticias que coincidan con las palabras clave
                 relevant_news = News.objects.filter(query).distinct()  # Evita duplicados
                 summarized_news = summarize_news(relevant_news)
+                doc = Document()
+                doc.add_heading("Boletín Informativo", level=1)
+                doc.add_paragraph("")  # Espacio
+
+                for item in summarized_news:
+                    doc.add_heading(item['title'], level=2)
+                    doc.add_paragraph(item['summary'])
+                    doc.add_paragraph("")  # Espacio entre noticias
+
+                # 🔹 Guardar el documento en memoria
+                buffer = BytesIO()
+                doc.save(buffer)
+                buffer.seek(0)
+
+                # 🔹 Respuesta HTTP para descarga
+                response = HttpResponse(buffer.getvalue(), content_type='application/vnd.openxmlformats-officedocument.wordprocessingml.document')
+                response['Content-Disposition'] = 'attachment; filename="boletin_resumen.docx"'
+                return response
 
     return render(request, 'crear_boletin.html', {
         'news_form': news_form,

@@ -96,9 +96,7 @@ DATABASES = {
 
 load_dotenv()
 
-OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
-OPENAI_MODEL = "gpt-3.5-turbo"  # Modelo a utilizar
-
+APYHUB_API_KEY = os.getenv("APYHUB_API_KEY")
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
 
