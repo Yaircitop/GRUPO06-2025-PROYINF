@@ -3,7 +3,9 @@ from django.contrib.auth.models import User
 from django.contrib.auth import login
 from django.db import IntegrityError
 from .models import UserProfile
+from django.views.decorators.csrf import csrf_exempt
 
+@csrf_exempt
 def signup_view(request):
     if request.method == 'POST':
         run = request.POST['run']

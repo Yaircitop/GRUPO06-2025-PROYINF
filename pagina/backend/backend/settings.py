@@ -86,13 +86,10 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'djongo',
-        'NAME': 'Cluster0',  # Nombre de tu base de datos (puedes cambiarlo si usas otro)
+        'NAME': 'INF255',  # Nombre de tu base de datos (puedes cambiarlo si usas otro)
         'ENFORCE_SCHEMA': False,
         'CLIENT': {
-            'host': 'mongodb+srv://juanito1080p:yF8rNzin3acyXk0w@cluster0.n4mdcsq.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0',
-            'username': 'juanito1080p',
-            'password': 'yF8rNzin3acyXk0w',
-            'authMechanism': 'SCRAM-SHA-1',
+            'host': 'mongodb://localhost:27017',
         }
     }
 }
