@@ -8,7 +8,6 @@ from docx import Document
 from io import BytesIO
 
 def handle_news_upload(request):
-    """Procesa el formulario para subir noticias."""
     news_form = NewsForm(request.POST)
     if news_form.is_valid():
         news_form.save()
@@ -16,7 +15,6 @@ def handle_news_upload(request):
     return news_form
 
 def build_news_query(keywords):
-    """Construye una consulta OR para filtrar noticias por palabras clave."""
     keyword_list = [word.strip() for word in keywords.split(",")]
     query = Q()
     for keyword in keyword_list:
@@ -24,7 +22,6 @@ def build_news_query(keywords):
     return query
 
 def generate_docx(summarized_news):
-    """Genera un archivo .docx en memoria con las noticias resumidas."""
     doc = Document()
     doc.add_heading("Boletín Informativo", level=1)
     doc.add_paragraph("")  # Espacio
@@ -32,7 +29,7 @@ def generate_docx(summarized_news):
     for item in summarized_news:
         doc.add_heading(item['title'], level=2)
         doc.add_paragraph(item['summary'])
-        doc.add_paragraph("")  # Espacio entre noticias
+        doc.add_paragraph("")  
 
     buffer = BytesIO()
     doc.save(buffer)
@@ -47,7 +44,7 @@ def crear_boletin(request):
     if request.method == "POST":
         if "upload_news" in request.POST:
             result = handle_news_upload(request)
-            if isinstance(result, HttpResponse):  # redirect
+            if isinstance(result, HttpResponse):
                 return result
             news_form = result
 
