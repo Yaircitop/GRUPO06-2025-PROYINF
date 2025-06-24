@@ -25,7 +25,7 @@ DB_USER=nombre_usuario_BD // el nombre del usuario creador de la base de datos (
 DB_PASSWORD=contraseña_BD // la contraseña para acceder a postgreSQL
 DB_HOST=host_de_su_BD // suele ser localhost
 DB_PORT=puerto_BD// puerto donde se instaló postgreSQL
-OPENAI_API_KEY=tu_key_OpenAI// tu clave secreta creada para la utilización de la API
+APYHUB_API_KEY=tu_key_ApyHub// tu clave secreta creada para la utilización de la API
 ```
 * Abrir una terminal donde se encuentre el archivo manage.py (este se encuentra en la carpeta 'backend', dentro de la carpeta 'pagina').
 * Instalar la libreria python-decouple y psycopg2 para el enlace de la base de datos local con Django: para ello, utilizar los comandos:
@@ -33,11 +33,8 @@ OPENAI_API_KEY=tu_key_OpenAI// tu clave secreta creada para la utilización de l
 ..\GRUPO11-2024-PROYINF\pagina\backend> pip install python-decouple python-dotenv
 ..\GRUPO11-2024-PROYINF\pagina\backend> pip install python-decouple psycopg2
 ```
-* Instalar la librería de la API OpenAI a través del comando:
-```python
-..\GRUPO11-2024-PROYINF\pagina\backend> pip install openai==0.28.0
-```
-(Notar que esta API es de pago, es decir, requiere de la compra de un plan que permite la utilización de tokens, según el monto pagado, los tokens disponibles a utilizar, por lo tanto, como grupo, asumimos que la utilización al 100% de esta página conlleva a tener un plan anteriormente suscrito. Se pueden observar los precios en la siguiente página https://openai.com/api/pricing/)
+* Obtención de key de la AI Summarize API a través del siguiente link: https://apyhub.com/utility/ai-summarize
+(Notar que esta API es de pago, es decir, requiere de la compra de un plan que permite la utilización de tokens, según el monto pagado, los tokens disponibles a utilizar, por lo tanto, como grupo, asumimos que la utilización al 100% de esta página conlleva a tener un plan anteriormente suscrito. Se pueden observar los precios en la sección 'Subscription' al crear un perfil)
 * Posteriormente realizar migraciones:
 ```python
 ..\GRUPO11-2024-PROYINF\pagina\backend> py manage.py makemigrations
